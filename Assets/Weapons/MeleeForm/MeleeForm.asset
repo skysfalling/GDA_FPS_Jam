@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f8e38f86d33214a8034ec992852834, type: 3}
+  m_Name: MeleeForm
+  m_EditorClassIdentifier: 
+  id: melee
+  description: Melee swing attack
+  icon: {fileID: 0}
+  pivot: {fileID: 0}
+  firingType: 1
+  actionCooldown: 0.5
+  maxHoldDuration: 0
+  energyType: 1
+  energyRegenType: 2
+  energyRegenCooldown: 5
+  energyRegenRate: 0
+  energyMax: 100
+  energyCost: 20
+  meleeFX: {fileID: 0}
+  testCube: {fileID: 7971973396320074524, guid: 2b925eb2d1a7d4447826d339dd4d3c84,
+    type: 3}
