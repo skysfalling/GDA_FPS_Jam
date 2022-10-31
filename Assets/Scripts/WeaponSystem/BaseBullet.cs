@@ -6,6 +6,7 @@ public class BaseBullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
 
+    public float damage = 1.0f;
     public float speed = 1.0f;
     public float lifespan = 6.0f;
     public Vector3 targetPosition;
@@ -43,12 +44,20 @@ public class BaseBullet : MonoBehaviour
         transform.forward = direction;
     }
 
+    public virtual void OnImpact(Collision collision) {}
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Damagable")
-        {
+        DamageManager damageManager = collision.gameObject.GetComponent<DamageManager>();
 
+        // Check if target has a DamageManager
+        if (damageManager != null)
+        {
+            // If it does, damage the target
+            damageManager.ProcessDamage(damage);
         }
+
+        OnImpact(collision);
 
         Destroy(gameObject);
     }
