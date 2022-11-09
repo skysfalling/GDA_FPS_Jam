@@ -173,7 +173,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54690
+  m_Name: pb_Mesh29662
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2037,11 +2037,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TargetDummy
       objectReference: {fileID: 0}
-    - target: {fileID: 2528756038219963656, guid: b7a1c7b5dddbdf7408fcaecc25f62f4b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 2908237481093220274, guid: b7a1c7b5dddbdf7408fcaecc25f62f4b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2097,16 +2092,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8489872609920611193, guid: b7a1c7b5dddbdf7408fcaecc25f62f4b,
-        type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8489872609920611193, guid: b7a1c7b5dddbdf7408fcaecc25f62f4b,
-        type: 3}
-      propertyPath: damagePop
-      value: 
-      objectReference: {fileID: 3441003556290424104, guid: 8a6e1ab8111fc9f49b8216a9733baeba,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7a1c7b5dddbdf7408fcaecc25f62f4b, type: 3}
