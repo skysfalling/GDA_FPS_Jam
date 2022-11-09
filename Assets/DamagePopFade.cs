@@ -48,11 +48,11 @@ public class DamagePopFade : MonoBehaviour
         _startFade = true;
     } 
 
-    private void Update()
+    private void FixedUpdate()
     {
 
         // Move left or right relative from camera
-        transform.position += _direction * _speed * Time.deltaTime;
+        transform.position += _direction * _speed * Time.fixedDeltaTime;
 
         _speed *= 0.625f;
 
