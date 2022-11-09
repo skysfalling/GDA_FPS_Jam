@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4041714893845839069}
   - component: {fileID: 3447113993222580536}
   - component: {fileID: 3447113993222580537}
-  - component: {fileID: 8489872609920611193}
+  - component: {fileID: 9052320408805946430}
   m_Layer: 0
   m_Name: TargetDummy
-  m_TagString: Damagable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: db601e6c68b36c141ac6b29c6130bf89, type: 3}
---- !u!114 &8489872609920611193
+--- !u!114 &9052320408805946430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +126,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2528756038219963656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01713b72187d56d4fa6632b5d9a82045, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fd5df6226405ad408db7020cdc3999b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  CurrentHealth: 100
+  BaseHealth: 100
+  damagePop: {fileID: 3441003556290424104, guid: 8a6e1ab8111fc9f49b8216a9733baeba,
+    type: 3}

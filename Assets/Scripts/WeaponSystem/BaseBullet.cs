@@ -48,13 +48,13 @@ public class BaseBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        DamageManager damageManager = collision.gameObject.GetComponent<DamageManager>();
+        Damageable damageable = collision.gameObject.GetComponent<Damageable>();
 
-        // Check if target has a DamageManager
-        if (damageManager != null)
+        // Check if target is a Damageable
+        if (damageable != null)
         {
             // If it does, damage the target
-            damageManager.ProcessDamage(damage);
+            damageable.ProcessDamage(damage);
         }
 
         OnImpact(collision);

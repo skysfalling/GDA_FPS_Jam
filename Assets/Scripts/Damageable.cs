@@ -2,35 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageManager : MonoBehaviour
+public abstract class Damageable : MonoBehaviour
 {
-    public float CurrentHealth
-    {
-        get;
-        set;
-    }
-    public float BaseHealth
-    {
-        get;
-        set;
-    }
+    [Header("Damageable Stats")]
+    public float CurrentHealth;
+    public float BaseHealth;
 
-    public float health;
-    public GameObject damagePop;
+    [Header("Serialized Prefabs")]
+    [SerializeField] private GameObject damagePop;
 
-    void Start()
+    public virtual void Start()
     {
-
+        CurrentHealth = BaseHealth;
     }
 
-    public void ProcessDamage(float damage)
+    public virtual void ProcessDamage(float damage)
     {
         // Find vector towards camera from origin
         Quaternion CameraAngle = Quaternion.LookRotation(this.transform.position - Camera.main.transform.position);
         CameraAngle = new Quaternion(0, CameraAngle.y, 0, CameraAngle.w);
 
         // Create Damage pop facing camera
-        GameObject DamagePop =  Instantiate(damagePop,this.transform.position, CameraAngle);
+        GameObject DamagePop = Instantiate(damagePop, this.transform.position, CameraAngle);
         DamagePop.GetComponent<DamagePopFade>().Setup(damage);
 
         CurrentHealth -= damage;
@@ -40,5 +33,4 @@ public class DamageManager : MonoBehaviour
             Destroy(gameObject, 4f);
         }
     }
-
 }
