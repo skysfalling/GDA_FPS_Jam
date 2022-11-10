@@ -317,7 +317,11 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void OnInspect(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (currentGrabbable == null)
+        {
+            return;
+        }
+            if (context.started)
         {
             isInspecting = true;
 

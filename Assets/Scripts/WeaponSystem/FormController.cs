@@ -15,13 +15,15 @@ public class FormController : UnitySingleton<FormController>
     [Header("Primary Status")]
     public bool _currentPrimaryIsPressed = false;
     public bool _currentPrimaryIsReady = true;
+    public float _currentPrimaryHoldDuration = 0;
 
     [Header("Secondary Status")]
     public bool _currentSecondaryIsPressed = false;
     public bool _currentSecondaryIsReady = true;
-
-    public float _currentPrimaryHoldDuration = 0;
     public float _currentSecondaryHoldDuration = 0;
+
+    [Header("Player Status")]
+    public bool isADS;
 
     // Start is called before the first frame update
     void Start()
@@ -202,6 +204,34 @@ public class FormController : UnitySingleton<FormController>
         }
 
         _currentSecondaryIsPressed = context.ReadValueAsButton();
+    }
+
+    public void AimDownSights(InputAction.CallbackContext context)
+    {
+
+        if (context.started)
+        {
+            isADS = true;
+            ToggleADS();
+        }
+        if (context.canceled)
+        {
+            isADS = false;
+            ToggleADS();
+        }
+
+    }
+
+    public void ToggleADS()
+    {
+        if (isADS)
+        {
+            currentForm.virtualCamera.enabled = true;
+        }
+        else
+        {
+            currentForm.virtualCamera.enabled = false;
+        }
     }
 
 
