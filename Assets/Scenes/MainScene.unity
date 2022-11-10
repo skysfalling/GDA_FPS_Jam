@@ -513,6 +513,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6036162202352874248, guid: 369a052995bb66e41965ef19bd68920c,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
 --- !u!1 &832575517

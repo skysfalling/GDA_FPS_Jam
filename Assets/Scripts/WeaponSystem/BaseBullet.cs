@@ -16,13 +16,13 @@ public class BaseBullet : MonoBehaviour
     public Vector3 targetPosition;
     public bool hasTargetPosition;
 
-    private void Start()
+    public virtual void Start()
     {
         ApplyForce();
         Destroy(gameObject, lifespan);
     }
 
-    void ApplyForce()
+    public virtual void ApplyForce()
     {
         Vector3 impulseDirection;
         if (hasTargetPosition)
@@ -59,7 +59,7 @@ public class BaseBullet : MonoBehaviour
 
     public virtual void OnImpact(Collision collision) {}
 
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         Damageable damageable = collision.gameObject.GetComponent<Damageable>();
 
