@@ -24,6 +24,7 @@ public abstract class Damageable : MonoBehaviour
 
         // Create Damage pop facing camera
         GameObject DamagePop = Instantiate(damagePop, this.transform.position, CameraAngle);
+        SpawnedGarbageController.Instance.AddAsChild(DamagePop);
         DamagePop.GetComponent<DamagePopFade>().Setup(damage);
 
         CurrentHealth -= damage;
