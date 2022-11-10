@@ -101,9 +101,6 @@ public class PlayerController : UnitySingleton<PlayerController>
             ApplyLook();
         }
 
-        
-        
-
     }
 
     private void FixedUpdate()
@@ -119,6 +116,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     private void ApplyGravity()
     {
+        // If grounded, stop, else apply force of gravity downwards.
         if (isGrounded)
         {
             return;
@@ -129,7 +127,8 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     private void ApplyLook()
     {
-        Vector2 looking = GetPlayerLook();
+        // Grab MouseX and MouseY axis for use in rotating camera + player.
+        // (I know this uses the old input system but this way solves some inconsistencies I was having with the new one)
         float lookX = Input.GetAxis("Mouse X") * _lookSensitivity;
         float lookY = Input.GetAxis("Mouse Y") * _lookSensitivity;
 

@@ -23,7 +23,7 @@ public class FormController : UnitySingleton<FormController>
     public bool _currentSecondaryIsReady = true;
     public float _currentSecondaryHoldDuration = 0;
 
-    [Header("Player Status")]
+    [Header("ADS Status")]
     public bool isADS;
 
     // Start is called before the first frame update
@@ -209,27 +209,34 @@ public class FormController : UnitySingleton<FormController>
 
     public void AimDownSights(InputAction.CallbackContext context)
     {
-
+        //If player starts holding down ADS
         if (context.started)
         {
             isADS = true;
-            ToggleADS();
+            ToggleADSCamera();
+            //Move the weapon to the ADS position to fix bullet spawn position
             LeanTween.move(currentForm.gameObject, ADSPosition, 0.15f).setEase(LeanTweenType.easeOutQuad);
+            //Update Max player movement speed
             PlayerController.Instance.UpdateMaximumInputSpeed();
 
         }
+
+        //If player stops holding down ADS
         if (context.canceled)
         {
             isADS = false;
-            ToggleADS();
+            ToggleADSCamera();
+            //Move the weapon back to the formParent/weaponParent position to fix bullet spawn position
             LeanTween.move(currentForm.gameObject, _formParent.transform, 0.15f).setEase(LeanTweenType.easeOutQuad);
+            //Update Max player movement speed
             PlayerController.Instance.UpdateMaximumInputSpeed();
 
         }
 
     }
 
-    public void ToggleADS()
+    //Enables and disables the camera attached to this Form/Weapon
+    public void ToggleADSCamera()
     {
         if (isADS)
         {
