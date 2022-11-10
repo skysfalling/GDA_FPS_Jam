@@ -6,6 +6,6 @@ public class SpawnedGarbageController : UnitySingleton<SpawnedGarbageController>
 {
     public void AddAsChild(GameObject child)
     {
-        child.transform.parent = transform;
+        child.transform.SetParent(transform);
     }
 }
