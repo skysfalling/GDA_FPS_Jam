@@ -26,3 +26,6 @@ MonoBehaviour:
   energyMax: 0
   energyCost: 0
   _bullet: {fileID: 3648734522970492190, guid: 60069794f9cc8084c8680891a603f67c, type: 3}
+  raycastCheckLayers:
+    serializedVersion: 2
+    m_Bits: 129

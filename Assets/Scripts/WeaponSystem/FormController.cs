@@ -11,6 +11,7 @@ public class FormController : UnitySingleton<FormController>
     public List<FormObject> formList;
     public Transform spawnPivot;
     [SerializeField] private GameObject _formParent;
+    public Transform ADSPosition;
 
     [Header("Primary Status")]
     public bool _currentPrimaryIsPressed = false;
@@ -213,11 +214,17 @@ public class FormController : UnitySingleton<FormController>
         {
             isADS = true;
             ToggleADS();
+            LeanTween.move(currentForm.gameObject, ADSPosition, 0.15f).setEase(LeanTweenType.easeOutQuad);
+            PlayerController.Instance.UpdateMaximumInputSpeed();
+
         }
         if (context.canceled)
         {
             isADS = false;
             ToggleADS();
+            LeanTween.move(currentForm.gameObject, _formParent.transform, 0.15f).setEase(LeanTweenType.easeOutQuad);
+            PlayerController.Instance.UpdateMaximumInputSpeed();
+
         }
 
     }
@@ -227,6 +234,7 @@ public class FormController : UnitySingleton<FormController>
         if (isADS)
         {
             currentForm.virtualCamera.enabled = true;
+            PlayerController.Instance.isPressingSprint = false;
         }
         else
         {

@@ -294,6 +294,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4793400364378843917}
+  - {fileID: 1361343249479498785}
   m_Father: {fileID: 9000727186152277279}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -512,9 +513,41 @@ MonoBehaviour:
   primaryForm: {fileID: 11400000, guid: 642e6cddafb00364a85448681a869338, type: 2}
   secondaryForm: {fileID: 11400000, guid: 642e6cddafb00364a85448681a869338, type: 2}
   virtualCamera: {fileID: 1591959767614796963}
+  barrelSpawn: {fileID: 1361343249479498785}
   _currentPrimaryCooldown: 0
   _currentSecondaryCooldown: 0
   _currentPrimaryEnergy: 0
   _currentSecondaryEnergy: 0
   _regenPrimaryEnergy: 0
   _regenSecondaryEnergy: 0
+--- !u!1 &7937506909260774583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361343249479498785}
+  m_Layer: 8
+  m_Name: BarrelSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1361343249479498785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937506909260774583}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.49405718}
+  m_LocalScale: {x: 6.601967, y: 6.601967, z: 1.1052731}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5559725656696666604}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

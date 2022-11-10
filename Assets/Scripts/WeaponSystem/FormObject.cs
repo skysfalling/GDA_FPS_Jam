@@ -9,6 +9,7 @@ public class FormObject : MonoBehaviour
     public BaseForm primaryForm;
     public BaseForm secondaryForm;
     public CinemachineVirtualCamera virtualCamera;
+    public Transform barrelSpawn;
 
     public float _currentPrimaryCooldown = 0;
     public float _currentSecondaryCooldown = 0;

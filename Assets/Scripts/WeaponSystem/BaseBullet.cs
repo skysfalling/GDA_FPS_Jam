@@ -9,6 +9,10 @@ public class BaseBullet : MonoBehaviour
     public float damage = 1.0f;
     public float speed = 1.0f;
     public float lifespan = 6.0f;
+
+    [SerializeField] private float hipSpread;
+    [SerializeField] private float ADSspread;
+
     public Vector3 targetPosition;
     public bool hasTargetPosition;
 
@@ -29,7 +33,16 @@ public class BaseBullet : MonoBehaviour
         {
             impulseDirection = transform.forward;
         }
-        
+
+        if (!FormController.Instance.isADS)
+        {
+            impulseDirection += new Vector3(Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread));
+        }
+        else
+        {
+            impulseDirection += new Vector3(Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread));
+        }
+
         _rigidbody.AddForce(impulseDirection * speed, ForceMode.VelocityChange);
     }
 

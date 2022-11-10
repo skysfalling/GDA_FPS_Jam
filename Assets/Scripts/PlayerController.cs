@@ -14,7 +14,7 @@ public class PlayerController : UnitySingleton<PlayerController>
     [SerializeField] private CinemachineVirtualCamera _vcam;
     [SerializeField] private Volume m_Volume;
     private Vignette m_Vignette;
-
+    
 
     [Header("Current Player State")]
     public Vector3 moveDirection;
@@ -46,6 +46,7 @@ public class PlayerController : UnitySingleton<PlayerController>
     [SerializeField] private float _maximumInputSpeed;
     private float _currentMaximumInputSpeed;
     [SerializeField] private float _sprintModifier;
+    [SerializeField] private float _ADSModifier;
     [SerializeField] private float _movementAcceleration;
     [SerializeField] private float _movementDrag;
     [SerializeField] private float _gravity;
@@ -129,8 +130,8 @@ public class PlayerController : UnitySingleton<PlayerController>
     private void ApplyLook()
     {
         Vector2 looking = GetPlayerLook();
-        float lookX = looking.x * _lookSensitivity * Time.deltaTime;
-        float lookY = looking.y * _lookSensitivity * Time.deltaTime;
+        float lookX = Input.GetAxis("Mouse X") * _lookSensitivity;
+        float lookY = Input.GetAxis("Mouse Y") * _lookSensitivity;
 
         xRotation -= lookY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -352,7 +353,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !FormController.Instance.isADS)
         {
             isPressingSprint = true;
             UpdateMaximumInputSpeed();
@@ -366,9 +367,15 @@ public class PlayerController : UnitySingleton<PlayerController>
         }
     }
 
-    void UpdateMaximumInputSpeed()
+    public void UpdateMaximumInputSpeed()
     {
-        if(isPressingSprint && moveDirection.y > 0)
+        if (FormController.Instance.isADS)
+        {
+            _currentMaximumInputSpeed = _maximumInputSpeed * _ADSModifier;
+            return;
+        }
+
+        if (isPressingSprint && moveDirection.y > 0)
         {
             _currentMaximumInputSpeed = _maximumInputSpeed * _sprintModifier;
             isSprinting = true;
@@ -378,16 +385,17 @@ public class PlayerController : UnitySingleton<PlayerController>
             _currentMaximumInputSpeed = _maximumInputSpeed;
             isSprinting = false;
         }
+
     }
 
 
     void UpdateSprintVFX()
     {
-        if (isSprinting && currentVFXState < 1)
+        if ((isSprinting || FormController.Instance.isADS) && currentVFXState < 1)
         {
             currentVFXState += Time.deltaTime * currentVFXStateRate;
         }
-        else if(currentVFXState > 0)
+        else if(currentVFXState > 0 && !(isSprinting || FormController.Instance.isADS))
         {
             currentVFXState -= Time.deltaTime * currentVFXStateRate;
         }
@@ -397,6 +405,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         ModifyFOV(Mathf.Lerp(_FOV, _sprintFOV, currentVFXState));
         m_Vignette.intensity.value = Mathf.Lerp(0.25f, 0.4f, currentVFXState);
     }
+
 
 
 }

@@ -59,7 +59,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 90
   orthographic: 0
@@ -638,10 +638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5342817933673353782}
     m_Modifications:
-    - target: {fileID: 42823531, guid: b325a024e0e4266408904aaf41e0a2bc, type: 3}
-      propertyPath: m_DefaultBlend.m_Time
-      value: 0.265
-      objectReference: {fileID: 0}
     - target: {fileID: 1286096392985679171, guid: b325a024e0e4266408904aaf41e0a2bc,
         type: 3}
       propertyPath: m_Volume
