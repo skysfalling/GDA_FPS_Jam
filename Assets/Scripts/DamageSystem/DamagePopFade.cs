@@ -7,37 +7,33 @@ public class DamagePopFade : MonoBehaviour
     private TextMeshPro _text;
 
     private Vector3 _direction;
-    private Vector3 _startPosition;
-
     private bool _startFade;
 
     private float _damage;
     private float _speed;
 
-
     public void Setup(float damageDone)
     {
         _damage = damageDone;
         _text.text = _damage.ToString();
-
         _speed = Random.Range(24, 34);
     }
 
     void Awake()
     {
+        // Pair text component
         _text = GetComponent<TextMeshPro>();
-        _startPosition = this.transform.position;
 
-        // Find direction from origin to camera
-        _direction = (Camera.main.transform.position - _startPosition).normalized;
+        // Get rotation relative to camera Y
+        float cameraYROT = Camera.main.transform.localEulerAngles.y;
 
-        // Flatten direction y
-        _direction = new Vector3(_direction.x, 0, _direction.z);
+        // Find direction above target head
+        _direction = transform.localRotation.eulerAngles.normalized;
 
-        // Find perpendicular to direction, going either left or right relative from camera
-        int[] range = new int[] { -1, 1 };
-        _direction = Quaternion.Euler(-45, range[Random.Range(0, 2)] * 90, 0) * _direction;
+        // Rotate direction relative to camera, -45 to 45 degrees
+        _direction = Quaternion.Euler(0, cameraYROT, Random.Range(-45, 45)) * _direction;
 
+        // Start fading popup
         StartCoroutine(startTheFade());
     }
 
@@ -51,14 +47,15 @@ public class DamagePopFade : MonoBehaviour
     private void FixedUpdate()
     {
 
-        // Move left or right relative from camera
+        // Move our popup
         transform.position += _direction * _speed * Time.fixedDeltaTime;
-
+        
+        // Decrease speed
         _speed *= 0.625f;
 
+        // Fade alpha then destroy half a second after creation
         Color currentColor = _text.color;
 
-        // Fade alpha then destroy half a second after creation
         if (_startFade)
         {
             if (currentColor.a > 0)
