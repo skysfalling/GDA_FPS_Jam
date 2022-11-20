@@ -46,6 +46,21 @@ public class FormController : UnitySingleton<FormController>
         currentForm = formList[currentFormIndex];
     }
 
+    public void SetNewWeapon(GameObject newWeapon)
+    {
+        ClearCurrentWeapon();
+        var newGun = Instantiate(newWeapon, _formParent.transform);
+        newGun.transform.localPosition = Vector3.zero;
+        FormObject newForm = newGun.transform.GetComponent<FormObject>();
+        currentForm = newForm;
+    }
+
+    public void ClearCurrentWeapon()
+    {
+        currentForm = null;
+        Destroy(_formParent.transform.GetChild(0).gameObject);
+    }
+
     public void SetForm(FormObject formObj)
     {
         currentForm = formObj;

@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryForm: {fileID: 11400000, guid: 642e6cddafb00364a85448681a869338, type: 2}
-  secondaryForm: {fileID: 11400000, guid: 642e6cddafb00364a85448681a869338, type: 2}
+  secondaryForm: {fileID: 11400000, guid: 33b6a8e6f84e7b74da4292999db78400, type: 2}
   virtualCamera: {fileID: 1591959767614796963}
   barrelSpawn: {fileID: 1361343249479498785}
   _currentPrimaryCooldown: 0
