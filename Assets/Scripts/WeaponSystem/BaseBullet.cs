@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+ * Base class for all physical bullets in the game 
+ * 
+ * Inherit when making your own bullet for your gun
+ */
 public class BaseBullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
@@ -57,6 +63,7 @@ public class BaseBullet : MonoBehaviour
         transform.forward = direction;
     }
 
+    // Runs when bullet hits a gameObject
     public virtual void OnImpact(Collision collision) {}
 
     public virtual void OnCollisionEnter(Collision collision)

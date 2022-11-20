@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+
 public class DamagePopFade : MonoBehaviour
 {
     private TextMeshPro _text;
