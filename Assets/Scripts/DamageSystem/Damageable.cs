@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -17,9 +18,12 @@ public abstract class Damageable : MonoBehaviour
     [Header("Serialized Prefabs")]
     [SerializeField] private GameObject damagePop;
 
+    private CrosshairFlairController flairController; 
+
     public virtual void Start()
     {
         CurrentHealth = BaseHealth;
+        flairController = GameObject.Find("crosshair_flair").GetComponent<CrosshairFlairController>();
     }
 
     // Apply damage to our Damageable
@@ -42,12 +46,14 @@ public abstract class Damageable : MonoBehaviour
         /// Process damage
         if (CurrentHealth <= 0)
         {
+            flairController.Flair(2f);
             OnHitEffect();
             OnDestroyEvent();
-            Destroy(gameObject, 0.25f);
+            Destroy(gameObject);
         }
         else
         {
+            flairController.Flair(0.25f);
             OnHitEffect();
         }
     }
