@@ -46,14 +46,14 @@ public abstract class Damageable : MonoBehaviour
         /// Process damage
         if (CurrentHealth <= 0)
         {
-            flairController.Flair(2f);
+            flairController.Flair(20f);
             OnHitEffect();
             OnDestroyEvent();
             Destroy(gameObject);
         }
         else
         {
-            flairController.Flair(0.25f);
+            flairController.Flair(15f);
             OnHitEffect();
         }
     }

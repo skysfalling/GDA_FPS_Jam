@@ -31,7 +31,12 @@ public class CrosshairFlairController : MonoBehaviour
     // Call to flair the crosshair flair out
     public void Flair(float growSize)
     {
-        Vector3 targetScale = _crosshair_transform.localScale + Vector3.one * growSize;
+        if(_crosshair_transform.localScale == Vector3.zero)
+        {
+            _crosshair_transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+        }
+
+        Vector3 targetScale = _crosshair_transform.localScale + (Vector3.one * growSize) * Time.fixedDeltaTime;
 
         // Check if Flair scale excedes max
         if (targetScale.x > max_size)

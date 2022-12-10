@@ -514,6 +514,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.33500004
       objectReference: {fileID: 0}
+    - target: {fileID: 2940736551243068429, guid: 369a052995bb66e41965ef19bd68920c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e0c9f925725ed7044a71591620eec7e4,
+        type: 3}
     - target: {fileID: 4354949260950743939, guid: 369a052995bb66e41965ef19bd68920c,
         type: 3}
       propertyPath: secondaryForm
@@ -2211,6 +2217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 108.057
+      objectReference: {fileID: 0}
+    - target: {fileID: 9052320408805946430, guid: b7a1c7b5dddbdf7408fcaecc25f62f4b,
+        type: 3}
+      propertyPath: CurrentHealth
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7a1c7b5dddbdf7408fcaecc25f62f4b, type: 3}
