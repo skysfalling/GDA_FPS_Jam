@@ -38,15 +38,10 @@ public class CrosshairFlairController : MonoBehaviour
 
         Vector3 targetScale = _crosshair_transform.localScale + (Vector3.one * growSize) * Time.fixedDeltaTime;
 
-        // Check if Flair scale excedes max
-        if (targetScale.x > max_size)
+        // Check if Flair scale is under max
+        if (targetScale.x <=  max_size)
         {
-            // Exponentially decrease scale up
-            _crosshair_transform.localScale += ((Vector3.one * (growSize * (targetScale.x - max_size) * 0.1f)));
-        }
-        else
-        {
-            // Scale up normally
+            // Apply new scale
             _crosshair_transform.localScale = targetScale;
         }
     }
