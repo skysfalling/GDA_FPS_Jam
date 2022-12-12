@@ -82,6 +82,18 @@ public class BaseBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public virtual void OnTriggerEnter(Collider other)
+    {
+        HitInteractable hitable = other.gameObject.GetComponent<HitInteractable>();
 
+        // Check if target is a hitable
+        if (hitable != null)
+        {
+            // If it does, damage the target
+            hitable.ProcessHit();
+        }
+
+        Destroy(gameObject);
+    }
 
 }

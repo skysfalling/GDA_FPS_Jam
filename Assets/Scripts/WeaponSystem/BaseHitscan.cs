@@ -57,8 +57,15 @@ public class BaseHitscan : MonoBehaviour
             damageable.ProcessDamage(damage);
         }
 
+        HitInteractable hitable = hitInfo.transform.gameObject.GetComponent<HitInteractable>();
 
-        
+        // Check if target is a hitable
+        if (hitable != null)
+        {
+            // If it does, damage the target
+            hitable.ProcessHit();
+        }
+
     }
 
     public void SetHitInfo(RaycastHit info)

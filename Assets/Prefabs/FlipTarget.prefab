@@ -112,7 +112,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2850763818714554962}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -130,7 +130,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8ff0ea7ca23ee48add3c022166809e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 10000
-  BaseHealth: 10000
-  damagePop: {fileID: 3441003556290424104, guid: 8a6e1ab8111fc9f49b8216a9733baeba,
-    type: 3}

@@ -9,7 +9,7 @@ using UnityEngine;
  * This is a flip target that flips 180 degrees when hit
  */
 
-public class Target_Air_Controller : Damageable
+public class Target_Air_Controller : HitInteractable
 {
     bool flip;
     float current_rotation = 1;
