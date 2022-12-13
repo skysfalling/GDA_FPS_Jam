@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 /*
  * Example Damagable
@@ -15,6 +15,9 @@ public class Target_Air_Controller : HitInteractable
     float current_rotation = 1;
     Vector3 start_rotation;
     float rate_of_rot = 200;
+    bool destroy = false;
+
+    public UnityEvent RunOnHit;
 
     public override void Start()
     {
@@ -41,18 +44,40 @@ public class Target_Air_Controller : HitInteractable
             // At 180 degrees, done flipping over
             flip = false; 
         }
+
+        // Check if target is being destroyed
+        if (destroy)
+        {
+            // While Scale is larger than 0
+            if (transform.localScale.y > 0)
+            {
+                // Scale down
+                transform.localScale -= new Vector3(5f, 150f, 150f) * Time.deltaTime;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     public override void OnHitEffect()
     {
         // If target isn't flipping we can flip again
-        if (!flip)
+        if (!flip && !destroy)
         {
+            RunOnHit.Invoke();
+
             // Set default stats, localized to current rotation
             flip = true;
             start_rotation = transform.eulerAngles;
             rate_of_rot = 200;
             current_rotation = 1;
         }
+    }
+
+    public void DestoryTarget()
+    {
+        destroy = true;
     }
 }
