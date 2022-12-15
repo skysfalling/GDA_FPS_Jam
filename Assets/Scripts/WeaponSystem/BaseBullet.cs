@@ -31,6 +31,9 @@ public class BaseBullet : MonoBehaviour
     public virtual void ApplyForce()
     {
         Vector3 impulseDirection;
+
+        //If the bullet has a target position, calculate the normalized vector pointing at that position and set the impulse direction to that vector.
+        //If it doesn't have a target position, just set the impulse direction to the direction of the projectile.
         if (hasTargetPosition)
         {
             impulseDirection = Vector3.Normalize(targetPosition - transform.position);
@@ -40,18 +43,25 @@ public class BaseBullet : MonoBehaviour
             impulseDirection = transform.forward;
         }
 
+        float spreadValue = 0;
+
+        //If the player is not aiming down sights, use the hip random spread, else use the ADS spread.
         if (!FormController.Instance.isADS)
         {
-            impulseDirection += new Vector3(Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread));
+            spreadValue = hipSpread;
         }
         else
         {
-            impulseDirection += new Vector3(Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread));
+            spreadValue = ADSspread;
         }
+
+        //Add the random spread to the impulse direction calculated previously
+        impulseDirection += new Vector3(Random.Range(-spreadValue, spreadValue), Random.Range(-spreadValue, spreadValue), Random.Range(-spreadValue, spreadValue));
 
         _rigidbody.AddForce(impulseDirection * speed, ForceMode.VelocityChange);
     }
 
+    //Set target position for this bullet;
     public void SetTargetPosition(Vector3 position)
     {
         targetPosition = position;
