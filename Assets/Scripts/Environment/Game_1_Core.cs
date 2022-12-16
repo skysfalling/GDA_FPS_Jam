@@ -6,9 +6,9 @@ using TMPro;
 public class Game_1_Core : MonoBehaviour
 {
     // Game Stats
-    int speed = 0;
     int TargetsLeft = 20;
     int TargetsHit = 0;
+    int BestTargetsHit;
 
     // Dependencies
     public TextMeshPro mainScoreTracker; // Prints Targets Hit / 20
@@ -17,6 +17,7 @@ public class Game_1_Core : MonoBehaviour
 
     public GameObject StartButton;
 
+    ShootableButton StartButtonCore;
     Target_Air_Controller currentTarget;
     LineRenderer lineRenderer;
 
@@ -25,10 +26,12 @@ public class Game_1_Core : MonoBehaviour
     float lineWidth = 0f;
     string mainScoreText;
     string secondaryScoreText;
+    Coroutine coroutine;
 
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        StartButtonCore = StartButton.GetComponent<ShootableButton>();
     }
 
     void Update()
@@ -55,17 +58,31 @@ public class Game_1_Core : MonoBehaviour
         // Add Unity Event Listener to Recieve Callback from target hit
         // This allows us to increment targets hit and create our next target, once the last is hits
         currentTarget.RunOnHit.AddListener(targetHit);
+
+        // Start Targets Timer
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(missTimer());
+        
     }
 
     public void startGame()
     {
         gameStarted = true;
 
+        // Reset trackers
+        TargetsLeft = 20;
+        TargetsHit = 0;
+
         // Set our text panels up
         mainScoreText = mainScoreTracker.text;
         secondaryScoreText = secondaryScoreTracker.text;
 
+        // Update our text
         mainScoreTracker.text = TargetsHit.ToString() + "/20";
+        mainScoreTracker.fontSize = 14.56f;
         secondaryScoreTracker.text = TargetsLeft.ToString() + " Left";
 
         // Disable Start Button
@@ -78,8 +95,25 @@ public class Game_1_Core : MonoBehaviour
     public void endGame()
     {
         gameStarted = false;
-        mainScoreTracker.text = mainScoreText;
+
+        if(BestTargetsHit < TargetsHit)
+        {
+            BestTargetsHit = TargetsHit;
+        }
+
+        // Update our text
+        mainScoreTracker.text = "Last " + TargetsHit.ToString() + "/20\n" +
+                                "Best " + BestTargetsHit.ToString() + "/20";
+        mainScoreTracker.fontSize = 7.38f;
         secondaryScoreTracker.text = secondaryScoreText;
+
+        // Stop Targets Timer
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        StartButtonCore.OnHitEffect();
 
         // Enable Start Button
         StartButton.SetActive(true);
@@ -87,14 +121,46 @@ public class Game_1_Core : MonoBehaviour
 
     public void targetHit()
     {
+        // Process hit
+        TargetsLeft -= 1;
         TargetsHit += 1;
         currentTarget.DestoryTarget();
-        spawnTarget();
-        TargetsLeft -= 1;
 
+        // Check for end condition
+        if (TargetsLeft <= 0)
+        {
+            endGame();
+            return;
+        }
+
+        spawnTarget();
+        
         // Update Text
         mainScoreTracker.text = TargetsHit.ToString() + "/20";
         secondaryScoreTracker.text = TargetsLeft.ToString() + " Left";
     }
 
+    private IEnumerator missTimer()
+    {
+        yield return new WaitForSeconds(2f);
+
+        // Process hit
+        currentTarget.DestoryTarget();
+        TargetsLeft -= 1;
+
+        // Check for end condition
+        if (TargetsLeft <= 0)
+        {
+            endGame();
+        }
+        else
+        { 
+            // Otherwise, continue and spawn target
+            spawnTarget();
+
+            // Update Text
+            mainScoreTracker.text = TargetsHit.ToString() + "/20";
+            secondaryScoreTracker.text = TargetsLeft.ToString() + " Left";
+        }
+    }
 }
