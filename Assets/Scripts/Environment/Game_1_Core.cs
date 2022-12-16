@@ -6,7 +6,11 @@ using TMPro;
 public class Game_1_Core : MonoBehaviour
 {
     // Game Stats
-    int TargetsLeft = 20;
+    public int totalTargets;
+    public float timeBetweenTargets;
+
+    // Trackers
+    int TargetsLeft;
     int TargetsHit = 0;
     int BestTargetsHit;
 
@@ -32,6 +36,8 @@ public class Game_1_Core : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         StartButtonCore = StartButton.GetComponent<ShootableButton>();
+
+        TargetsLeft = totalTargets;
     }
 
     void Update()
@@ -73,7 +79,7 @@ public class Game_1_Core : MonoBehaviour
         gameStarted = true;
 
         // Reset trackers
-        TargetsLeft = 20;
+        TargetsLeft = totalTargets;
         TargetsHit = 0;
 
         // Set our text panels up
@@ -81,7 +87,7 @@ public class Game_1_Core : MonoBehaviour
         secondaryScoreText = secondaryScoreTracker.text;
 
         // Update our text
-        mainScoreTracker.text = TargetsHit.ToString() + "/20";
+        mainScoreTracker.text = TargetsHit.ToString() + "/" + totalTargets.ToString();
         mainScoreTracker.fontSize = 14.56f;
         secondaryScoreTracker.text = TargetsLeft.ToString() + " Left";
 
@@ -102,8 +108,8 @@ public class Game_1_Core : MonoBehaviour
         }
 
         // Update our text
-        mainScoreTracker.text = "Last " + TargetsHit.ToString() + "/20\n" +
-                                "Best " + BestTargetsHit.ToString() + "/20";
+        mainScoreTracker.text = "Last " + TargetsHit.ToString() + "/" + totalTargets.ToString() + "\n" +
+                                "Best " + BestTargetsHit.ToString() + "/" + totalTargets.ToString();
         mainScoreTracker.fontSize = 7.38f;
         secondaryScoreTracker.text = secondaryScoreText;
 
@@ -136,13 +142,13 @@ public class Game_1_Core : MonoBehaviour
         spawnTarget();
         
         // Update Text
-        mainScoreTracker.text = TargetsHit.ToString() + "/20";
+        mainScoreTracker.text = TargetsHit.ToString() + "/" + totalTargets.ToString();
         secondaryScoreTracker.text = TargetsLeft.ToString() + " Left";
     }
 
     private IEnumerator missTimer()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(timeBetweenTargets);
 
         // Process hit
         currentTarget.DestoryTarget();
@@ -159,7 +165,7 @@ public class Game_1_Core : MonoBehaviour
             spawnTarget();
 
             // Update Text
-            mainScoreTracker.text = TargetsHit.ToString() + "/20";
+            mainScoreTracker.text = TargetsHit.ToString() + "/" + totalTargets.ToString();
             secondaryScoreTracker.text = TargetsLeft.ToString() + " Left";
         }
     }

@@ -2848,6 +2848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6f5f074553659478a30f6ba4202dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalTargets: 5
+  timeBetweenTargets: 1
   mainScoreTracker: {fileID: 220943079}
   secondaryScoreTracker: {fileID: 145500760}
   Target: {fileID: 3469287838574223890, guid: e904dd83a6eee154bbe2bb810a3e6e45, type: 3}
