@@ -49,6 +49,14 @@ public class Game_1_Core : MonoBehaviour
             lineRenderer.endWidth = lineWidth;
             lineWidth += 0.05f;
         }
+
+        // Slowly shrink laser grid
+        if (!gameStarted && lineWidth > 0f)
+        {
+            lineRenderer.startWidth = lineWidth;
+            lineRenderer.endWidth = lineWidth;
+            lineWidth -= 0.05f;
+        }
     }
 
     private void spawnTarget()
