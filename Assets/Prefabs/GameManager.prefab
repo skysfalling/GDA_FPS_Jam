@@ -360,6 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5342817933673353782}
   - component: {fileID: 5342817933673353776}
+  - component: {fileID: 1141447740937468596}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -632,6 +633,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1141447740937468596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342817933673353783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fd04e7801af984e81fa9c10ec71137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allFoundWeapons: []
 --- !u!1 &9044084462013215419
 GameObject:
   m_ObjectHideFlags: 0
