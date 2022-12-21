@@ -443,7 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9000727186152277279}
   m_Layer: 8
-  m_Name: Mesh
+  m_Name: SniperMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

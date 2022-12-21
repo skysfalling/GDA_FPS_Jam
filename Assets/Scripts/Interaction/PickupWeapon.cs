@@ -7,6 +7,7 @@ public class PickupWeapon : Interactable
     public Rigidbody _rb;
     public PlayerController playerController;
     public GameObject weaponPrefab;
+    public Transform meshParent;
 
     public override void Start()
     {
@@ -31,6 +32,15 @@ public class PickupWeapon : Interactable
         FormController.Instance.SetNewWeapon(weaponPrefab);
     }
 
+    public void SetMesh(GameObject meshPrefab)
+    {
+        if(meshParent == null)
+        {
+            return;
+        }
+
+        Instantiate(meshPrefab, meshParent);
+    }
    
 
     public Rigidbody GetRigidbody()

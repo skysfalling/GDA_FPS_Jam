@@ -27,6 +27,9 @@ public class WeaponResourceManager : MonoBehaviour
 {
 
     public List<WeaponInfo> allFoundWeaponsInfo = new List<WeaponInfo>();
+    [SerializeField] private GameObject interactableWeaponSwapPrefab;
+    private Vector3 latestWeaponSwapPosition = Vector3.zero;
+    [SerializeField] private Vector3 offset = Vector3.zero;
 
     private void Awake()
     {
@@ -36,7 +39,7 @@ public class WeaponResourceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SpawnInteractableResourceWeapons();
     }
 
     // Update is called once per frame
@@ -57,5 +60,17 @@ public class WeaponResourceManager : MonoBehaviour
             
         }
             
+    }
+
+    void SpawnInteractableResourceWeapons()
+    {
+        foreach(WeaponInfo w in allFoundWeaponsInfo)
+        {
+            GameObject newSwapper = Instantiate(interactableWeaponSwapPrefab, transform);
+            newSwapper.transform.localPosition = latestWeaponSwapPosition;
+            latestWeaponSwapPosition = newSwapper.transform.localPosition + offset;
+            newSwapper.GetComponent<PickupWeapon>().weaponPrefab = (Resources.Load(w.weaponPrefabPath, typeof(GameObject)) as GameObject);
+            newSwapper.GetComponent<PickupWeapon>().SetMesh((Resources.Load(w.meshPath, typeof(GameObject)) as GameObject));
+        }
     }
 }
