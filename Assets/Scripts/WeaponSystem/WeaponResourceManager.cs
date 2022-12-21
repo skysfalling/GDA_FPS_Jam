@@ -52,7 +52,7 @@ public class WeaponResourceManager : MonoBehaviour
         {
             if(t.name == "weapon_info")
             {
-                allFoundWeapons.Add(JsonUtility.FromJson<WeaponInfo>(t.text));
+                allFoundWeaponsInfo.Add(JsonUtility.FromJson<WeaponInfo>(t.text));
             }
             
         }

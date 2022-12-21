@@ -135,9 +135,10 @@ public class PlayerController : UnitySingleton<PlayerController>
         xRotation -= lookY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        transform.Rotate(Vector3.up * lookX);
         _playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        transform.Rotate(Vector3.up * lookX);
+        
     }
 
     private void ApplyInspect()

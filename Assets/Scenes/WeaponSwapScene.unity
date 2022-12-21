@@ -509,12 +509,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: e0c9f925725ed7044a71591620eec7e4,
         type: 3}
-    - target: {fileID: 4354949260950743939, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: secondaryForm
-      value: 
-      objectReference: {fileID: 11400000, guid: 33b6a8e6f84e7b74da4292999db78400,
-        type: 2}
     - target: {fileID: 4764210616568506017, guid: 369a052995bb66e41965ef19bd68920c,
         type: 3}
       propertyPath: interactableLayers.m_Bits
@@ -776,7 +770,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -2406,7 +2400,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29452
+  m_Name: pb_Mesh29468
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
