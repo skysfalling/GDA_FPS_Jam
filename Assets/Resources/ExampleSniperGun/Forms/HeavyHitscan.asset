@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 883895f4d365bfb419097644865cee05, type: 3}
-  m_Name: HybridGunSecondaryForm
+  m_Name: HeavyHitscan
   m_EditorClassIdentifier: 
-  id: hitscan
+  id: heavy hitscan
   description: it scans then hits
   icon: {fileID: 0}
   pivot: {fileID: 0}
-  firingType: 0
-  actionCooldown: 0.1
+  firingType: 1
+  actionCooldown: 0.25
   maxHoldDuration: 0
-  energyType: 0
-  energyRegenType: 0
-  energyRegenCooldown: 0
-  energyRegenRate: 0
-  energyMax: 0
-  energyCost: 0
-  _bullet: {fileID: 3648734522970492190, guid: 6b6b894e73f75f342aab9797dd4c815f, type: 3}
+  energyType: 1
+  energyRegenType: 1
+  energyRegenCooldown: 1.5
+  energyRegenRate: 10
+  energyMax: 20
+  energyCost: 2
+  shareEnergyWithOtherForm: 0
+  _bullet: {fileID: 3648734522970492190, guid: fb2b9bfa5e504fe44a045ffe741c7fc2, type: 3}

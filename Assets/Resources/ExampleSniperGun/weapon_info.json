@@ -1,6 +1,6 @@
 {
   "id": "hitscanSniper",
   "weaponPrefabPath": "ExampleSniperGun/WeaponPrefab/HitscanSniper",
-  "meshPath": "ExampleSniperGun/Models/SniperMesh"
-
+  "meshPath": "ExampleSniperGun/Models/SniperMesh",
+  "displayName": "Test Sniper"
 }

@@ -12,18 +12,20 @@ public class WeaponInfo
     public string id;
     public string weaponPrefabPath;
     public string meshPath;
+    public string displayName;
 
 
-    public WeaponInfo(string _id, string _weaponPrefabPath, string _meshPath)
+    public WeaponInfo(string _id, string _weaponPrefabPath, string _meshPath, string _displayName)
     {
         this.id = _id;
         this.weaponPrefabPath = _weaponPrefabPath;
         this.meshPath = _meshPath;
+        this.displayName = _displayName;
 
     }
 }
 
-public class WeaponResourceManager : MonoBehaviour
+public class WeaponResourceManager : UnitySingleton<WeaponResourceManager>
 {
 
     public List<WeaponInfo> allFoundWeaponsInfo = new List<WeaponInfo>();
@@ -31,8 +33,9 @@ public class WeaponResourceManager : MonoBehaviour
     private Vector3 latestWeaponSwapPosition = Vector3.zero;
     [SerializeField] private Vector3 offset = Vector3.zero;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         FindAllResourceWeapons();
     }
 
@@ -72,5 +75,18 @@ public class WeaponResourceManager : MonoBehaviour
             newSwapper.GetComponent<PickupWeapon>().weaponPrefab = (Resources.Load(w.weaponPrefabPath, typeof(GameObject)) as GameObject);
             newSwapper.GetComponent<PickupWeapon>().SetMesh((Resources.Load(w.meshPath, typeof(GameObject)) as GameObject));
         }
+    }
+
+    public WeaponInfo FindWeaponInfoByID(string id)
+    {
+        foreach (WeaponInfo w in allFoundWeaponsInfo)
+        {
+            if(w.id == id)
+            {
+                return w;
+            }
+        }
+
+        return null;
     }
 }

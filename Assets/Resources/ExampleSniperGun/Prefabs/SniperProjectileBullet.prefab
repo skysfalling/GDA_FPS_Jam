@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2354521773699952302}
   - component: {fileID: 4966867492654859216}
   m_Layer: 9
-  m_Name: ProjectileBullet
+  m_Name: SniperProjectileBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3648734522970492190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2654156317744909129}
@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2354521773699952302}
-  damage: 1
-  speed: 25
+  damage: 0.5
+  speed: 35
   lifespan: 6
-  hipSpread: 0.035
-  ADSspread: 0.01
+  hipSpread: 0.04
+  ADSspread: 0.015
   targetPosition: {x: 0, y: 0, z: 0}
   hasTargetPosition: 0
 --- !u!54 &2354521773699952302

@@ -44,6 +44,7 @@ public class FormController : UnitySingleton<FormController>
     {
         currentFormIndex = index;
         currentForm = formList[currentFormIndex];
+        WeaponPanelUIController.Instance.InitializeNewWeapon(currentForm);
     }
 
     public void SetNewWeapon(GameObject newWeapon)
@@ -53,6 +54,7 @@ public class FormController : UnitySingleton<FormController>
         newGun.transform.localPosition = Vector3.zero;
         FormObject newForm = newGun.transform.GetComponent<FormObject>();
         currentForm = newForm;
+        WeaponPanelUIController.Instance.InitializeNewWeapon(newForm);
     }
 
     public void ClearCurrentWeapon()

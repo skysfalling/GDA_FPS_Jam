@@ -29,6 +29,7 @@ public abstract class BaseForm : ScriptableObject
     public float energyRegenRate;
     public float energyMax;
     public float energyCost;
+    public bool shareEnergyWithOtherForm;
 
 
 

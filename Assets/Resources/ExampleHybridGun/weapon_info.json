@@ -1,6 +1,6 @@
 {
   "id": "basic",
   "weaponPrefabPath": "ExampleHybridGun/WeaponPrefab/TestGun",
-  "meshPath": "ExampleHybridGun/Models/testGunModel"
-
+  "meshPath": "ExampleHybridGun/Models/testGunModel",
+  "displayName": "Test Hybrid Gun"
 }

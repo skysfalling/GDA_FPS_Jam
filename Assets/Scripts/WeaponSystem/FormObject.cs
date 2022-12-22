@@ -10,6 +10,7 @@ public class FormObject : MonoBehaviour
     public BaseForm secondaryForm;
     public CinemachineVirtualCamera virtualCamera;
     public Transform barrelSpawn;
+    public string weaponID;
 
     public float _currentPrimaryCooldown = 0;
     public float _currentSecondaryCooldown = 0;
@@ -17,8 +18,12 @@ public class FormObject : MonoBehaviour
     public float _currentPrimaryEnergy = 0;
     public float _currentSecondaryEnergy = 0;
 
+    public float _currentPrimaryEnergyRegenTimer = 0;
+    public float _currentSecondaryEnergyRegenTimer = 0;
+
     public bool _regenPrimaryEnergy = false;
     public bool _regenSecondaryEnergy = false;
+    private bool _bothFormsShareEnergy = false;
 
     private void Start()
     {
@@ -39,8 +44,23 @@ public class FormObject : MonoBehaviour
         RegenerateEnergy();
     }
 
+    public void UpdateUI()
+    {
+
+    }
+
     void InitializePrimaryEnergy()
     {
+        if (_bothFormsShareEnergy)
+        {
+            return;
+        }
+
+        if (primaryForm.shareEnergyWithOtherForm)
+        {
+            _bothFormsShareEnergy = true;
+        }
+
         _currentPrimaryEnergy = primaryForm.energyMax;
         if(primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.EmptyFullFill)
         {
@@ -54,6 +74,17 @@ public class FormObject : MonoBehaviour
 
     void InitializeSecondaryEnergy()
     {
+        if (_bothFormsShareEnergy)
+        {
+
+            return;
+        }
+
+        if (secondaryForm.shareEnergyWithOtherForm)
+        {
+            _bothFormsShareEnergy = true;
+        }
+
         _currentSecondaryEnergy = secondaryForm.energyMax;
         if (secondaryForm.energyRegenType == BaseForm.EnergyRegenerationType.EmptyFullFill)
         {
@@ -67,6 +98,11 @@ public class FormObject : MonoBehaviour
 
     bool CheckValidEnergy(int formIndex)
     {
+        if(formIndex == 1 && _bothFormsShareEnergy)
+        {
+            formIndex = 2;
+        }
+
         switch (formIndex)
         {
             case 0:
@@ -83,17 +119,16 @@ public class FormObject : MonoBehaviour
                 else
                 {
                     _currentPrimaryEnergy -= primaryForm.energyCost;
+                    WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
 
                     if (primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.EmptyFullFill)
                     {
-                        if(_currentPrimaryEnergy <= 0)
-                        {
-                            _regenPrimaryEnergy = true;
-                        }
-                        else
-                        {
-                            _regenPrimaryEnergy = false;
-                        }
+                        _regenPrimaryEnergy = (_currentPrimaryEnergy <= 0);
+                    }
+
+                    if (primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.ConstantIncremental)
+                    {
+                        _currentPrimaryEnergyRegenTimer = primaryForm.energyRegenCooldown;
                     }
 
                     return true;
@@ -112,17 +147,44 @@ public class FormObject : MonoBehaviour
                 else
                 {
                     _currentSecondaryEnergy -= secondaryForm.energyCost;
+                    WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
 
                     if (secondaryForm.energyRegenType == BaseForm.EnergyRegenerationType.EmptyFullFill)
                     {
-                        if (_currentSecondaryEnergy <= 0)
-                        {
-                            _regenSecondaryEnergy = true;
-                        }
-                        else
-                        {
-                            _regenSecondaryEnergy = false;
-                        }
+                        _regenSecondaryEnergy = (_currentSecondaryEnergy <= 0);
+                    }
+
+                    if (secondaryForm.energyRegenType == BaseForm.EnergyRegenerationType.ConstantIncremental)
+                    {
+                        _currentSecondaryEnergyRegenTimer = secondaryForm.energyRegenCooldown;
+                    }
+
+                    return true;
+                }
+            case 2:
+
+                if (primaryForm.energyType == BaseForm.EnergyUsage.Unlimited)
+                {
+                    return true;
+                }
+
+                if (_currentPrimaryEnergy - secondaryForm.energyCost < 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    _currentPrimaryEnergy -= secondaryForm.energyCost;
+
+                    if (primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.EmptyFullFill)
+                    {
+                        _regenPrimaryEnergy = (_currentPrimaryEnergy <= 0);
+
+                    }
+
+                    if(primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.ConstantIncremental)
+                    {
+                        _currentPrimaryEnergyRegenTimer = primaryForm.energyRegenCooldown;
                     }
 
                     return true;
@@ -140,10 +202,12 @@ public class FormObject : MonoBehaviour
         {
             switch (primaryForm.energyRegenType) {
                 case BaseForm.EnergyRegenerationType.ConstantFullFill:
-
+                    WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
                     break;
                 case BaseForm.EnergyRegenerationType.ConstantIncremental:
                     _currentPrimaryEnergy += primaryForm.energyRegenRate * Time.deltaTime;
+                    _currentPrimaryEnergy = Mathf.Clamp(_currentPrimaryEnergy, 0, primaryForm.energyMax);
+                    WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
                     break;
                 case BaseForm.EnergyRegenerationType.EmptyFullFill:
                     StartCoroutine(FillEnergy(0));
@@ -157,15 +221,22 @@ public class FormObject : MonoBehaviour
             
         }
 
+        if (primaryForm.shareEnergyWithOtherForm || secondaryForm.shareEnergyWithOtherForm)
+        {
+            return;
+        }
+
         if (_regenSecondaryEnergy)
         {
             switch (secondaryForm.energyRegenType)
             {
                 case BaseForm.EnergyRegenerationType.ConstantFullFill:
-
+                    WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
                     break;
                 case BaseForm.EnergyRegenerationType.ConstantIncremental:
                     _currentSecondaryEnergy += secondaryForm.energyRegenRate * Time.deltaTime;
+                    _currentSecondaryEnergy = Mathf.Clamp(_currentSecondaryEnergy, 0, secondaryForm.energyMax);
+                    WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
                     break;
                 case BaseForm.EnergyRegenerationType.EmptyFullFill:
                     StartCoroutine(FillEnergy(1));
@@ -182,14 +253,16 @@ public class FormObject : MonoBehaviour
             case 0:
                 yield return new WaitForSeconds(primaryForm.energyRegenCooldown);
                 _currentPrimaryEnergy = primaryForm.energyMax;
+                
                 break;
             case 1:
                 yield return new WaitForSeconds(secondaryForm.energyRegenCooldown);
                 _currentSecondaryEnergy = secondaryForm.energyMax;
+                
                 break;
         }
 
-
+        WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
 
         yield return new WaitForSeconds(1);
     }
@@ -225,7 +298,7 @@ public class FormObject : MonoBehaviour
 
     public void UseSecondaryAction(float context)
     {
-        if(secondaryForm == null || !CheckValidEnergy(1))
+        if(secondaryForm == null)
         {
             return;
         }
@@ -260,6 +333,18 @@ public class FormObject : MonoBehaviour
         if (_currentSecondaryCooldown > 0)
         {
             _currentSecondaryCooldown -= Time.deltaTime;
+        }
+
+        if (_currentPrimaryEnergyRegenTimer > 0)
+        {
+            _currentPrimaryEnergyRegenTimer -= Time.deltaTime;
+            _regenPrimaryEnergy = (_currentPrimaryEnergyRegenTimer < 0);
+        }
+
+        if (_currentSecondaryEnergyRegenTimer > 0)
+        {
+            _currentSecondaryEnergyRegenTimer -= Time.deltaTime;
+            _regenSecondaryEnergy = (_currentSecondaryEnergyRegenTimer < 0);
         }
 
 

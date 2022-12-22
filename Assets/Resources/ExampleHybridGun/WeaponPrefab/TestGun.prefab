@@ -282,6 +282,7 @@ MonoBehaviour:
   secondaryForm: {fileID: 11400000, guid: d12dc37a4bd81ed42ba3bdbe623e70e9, type: 2}
   virtualCamera: {fileID: 1591959767614796963}
   barrelSpawn: {fileID: 1361343249479498785}
+  weaponID: basic
   _currentPrimaryCooldown: 0
   _currentSecondaryCooldown: 0
   _currentPrimaryEnergy: 0
