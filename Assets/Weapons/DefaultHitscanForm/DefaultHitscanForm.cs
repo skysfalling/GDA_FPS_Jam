@@ -6,7 +6,7 @@ using UnityEngine;
 public class DefaultHitscanForm : BaseForm
 {
     [Header("Form Specific Data")]
-    [SerializeField] private GameObject _bullet;
+    public GameObject _bullet;
 
  
     //FormAction() is called each time the form "shoots".

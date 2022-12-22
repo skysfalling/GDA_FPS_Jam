@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Forms/DefaultShoot Form")]
-public class DefaultShootForm : BaseForm
+[CreateAssetMenu(menuName = "Forms/ChargeRailgun_PrimaryForm")]
+public class ChargeRailgunPrimaryForm : DefaultShootForm
 {
-    [Header("Form Specific Data")]
-    public GameObject _bullet;
-    public LayerMask raycastCheckLayers;
- 
+
     //FormAction() is called each time the form "shoots".
     public override void FormAction(float context)
     {
         base.FormAction(-1);
-        
+
         //Spawn bullet prefab at weapon's barrel position
-        var bullet = Instantiate(_bullet,FormController.Instance.currentForm.barrelSpawn.position, Quaternion.identity);
+        var bullet = Instantiate(_bullet, FormController.Instance.currentForm.barrelSpawn.position, Quaternion.identity);
+        bullet.transform.GetComponent<ChargeRailgunBaseBullet>().hostForm = FormController.Instance.currentForm;
         SpawnedGarbageController.Instance.AddAsChild(bullet);
         RaycastHit info;
 
@@ -27,7 +25,8 @@ public class DefaultShootForm : BaseForm
             var pos = info.point;
             bullet.GetComponent<BaseBullet>().SetTargetPosition(pos);
         }
-        else {
+        else
+        {
             var dir = PlayerController.Instance._playerCamera.forward;
             bullet.GetComponent<BaseBullet>().SetDirection(dir);
         }

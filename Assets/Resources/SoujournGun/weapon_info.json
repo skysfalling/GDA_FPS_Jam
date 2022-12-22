@@ -1,0 +1,6 @@
+{
+  "id": "chargeRailgun",
+  "weaponPrefabPath": "SoujournGun/WeaponPrefab/ChargeRailgun",
+  "meshPath": "SoujournGun/Models/SniperMesh",
+  "displayName": "Charge Railgun"
+}
