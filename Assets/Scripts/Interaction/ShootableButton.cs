@@ -8,6 +8,13 @@ public class ShootableButton : HitInteractable
     bool _triggered = false;
     SpriteRenderer _spriteRenderer;
 
+
+    [Header("Properties")]
+    [Space(10)]
+    public bool canDisable = true; // If not, disable using a exterior call to DisableButton()
+    public bool startOn = false;
+
+
     [Header("Sprites")]
     [Space(10)]
     public Sprite spriteEnabled;
@@ -18,30 +25,50 @@ public class ShootableButton : HitInteractable
     public UnityEvent runOnEnable;
     public UnityEvent runOnDisable;
 
+
     public override void Start()
     {
         base.Start();
         _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+
+        if (startOn)
+        {
+            runOnEnable.Invoke();
+            _spriteRenderer.sprite = spriteEnabled;
+            _triggered = true;
+        }
     }
 
     // Handle Hit Interaction
     public override void OnHitEffect()
     {
 
-        // Is button Enabled?
-        if (_triggered)
+        // Is button Disabled?
+        if (!_triggered)
         {
-            // If so disable button
-            runOnDisable.Invoke();
-            _spriteRenderer.sprite = spriteDisabled;
-            _triggered = false;
-        }
-        else
-        {
-            // Otherwise enable button
+            // If so enable button
             runOnEnable.Invoke();
             _spriteRenderer.sprite = spriteEnabled;
             _triggered = true;
+
         }
+        else
+        {
+            if (canDisable)
+            {
+                // Otherwise, if we can, disable button
+                runOnDisable.Invoke();
+                _spriteRenderer.sprite = spriteDisabled;
+                _triggered = false;
+            }
+        }
+    }
+     
+    // Disable button
+    public void DisableButton()
+    {
+        runOnDisable.Invoke();
+        _spriteRenderer.sprite = spriteDisabled;
+        _triggered = false;
     }
 }
