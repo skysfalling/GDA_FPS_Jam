@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1591959767614796960}
   - component: {fileID: 1591959767614796963}
+  - component: {fileID: 8501287437314129630}
   m_Layer: 8
   m_Name: WeaponADSCam
   m_TagString: Untagged
@@ -166,6 +167,29 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1591959766538966084}
+--- !u!114 &8501287437314129630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591959767614796961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 0.2
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &3565266631278226323
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5031373402504124222}
   - component: {fileID: 8772137086625311784}
+  - component: {fileID: -4166555581262234945}
   m_Layer: 8
   m_Name: TestGun
   m_TagString: Untagged
@@ -287,8 +312,64 @@ MonoBehaviour:
   _currentSecondaryCooldown: 0
   _currentPrimaryEnergy: 0
   _currentSecondaryEnergy: 0
+  _currentPrimaryEnergyRegenTimer: 0
+  _currentSecondaryEnergyRegenTimer: 0
   _regenPrimaryEnergy: 0
   _regenSecondaryEnergy: 0
+  impulseSource: {fileID: -4166555581262234945}
+--- !u!114 &-4166555581262234945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031373402504124223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 1
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &7937506909260774583
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7937506909260774583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.49405724}
+  m_LocalPosition: {x: 0.083, y: 0.625, z: 0.468}
   m_LocalScale: {x: 6.601966, y: 6.6019664, z: 1.105273}
   m_ConstrainProportionsScale: 0
   m_Children: []

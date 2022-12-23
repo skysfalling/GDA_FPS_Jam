@@ -25,4 +25,7 @@ MonoBehaviour:
   energyRegenRate: 0
   energyMax: 0
   energyCost: 0
+  shareEnergyWithOtherForm: 0
+  screenShakeImpulseMagnitude: 0.01
+  screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
   _bullet: {fileID: 3648734522970492190, guid: 6b6b894e73f75f342aab9797dd4c815f, type: 3}

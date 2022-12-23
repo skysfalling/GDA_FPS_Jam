@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286096391073879404}
   - component: {fileID: 1286096391073879407}
+  - component: {fileID: 6945697100708949673}
   m_Layer: 0
   m_Name: VirtualCamera
   m_TagString: Untagged
@@ -124,7 +125,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7769517, y: 1}
+    m_SensorSize: {x: 1.7779887, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -133,6 +134,29 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1286096391785379717}
+--- !u!114 &6945697100708949673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286096391073879405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 0
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 0.2
+    m_NoiseOffsets: {x: -151.15247, y: 217.70801, z: 731.63245}
 --- !u!1 &1286096391358058915
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +559,7 @@ MonoBehaviour:
   interactableDistance: 2
   interactableLayers:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1527
   inspectMinimumSensitivity: 1
   _maximumInputSpeed: 6.5
   _sprintModifier: 1.5
@@ -596,6 +620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 85567447065316229}
   - component: {fileID: 6767049375469500207}
+  - component: {fileID: 3418290398795492660}
   m_Layer: 8
   m_Name: ClientPlayerModelVCam
   m_TagString: Untagged
@@ -648,7 +673,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7769517, y: 1}
+    m_SensorSize: {x: 1.7779887, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -657,6 +682,29 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 8842974908918224036}
+--- !u!114 &3418290398795492660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2417927349413672528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 0
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 0.2
+    m_NoiseOffsets: {x: -421.26834, y: -222.59033, z: 257.54904}
 --- !u!1 &4181502763753762254
 GameObject:
   m_ObjectHideFlags: 0

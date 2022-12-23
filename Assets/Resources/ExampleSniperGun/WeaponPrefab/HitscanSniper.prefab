@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4793400364378843917}
   - component: {fileID: 3498618951626662077}
   - component: {fileID: 496097381338001698}
-  - component: {fileID: 4669585716257836571}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4669585716257836571
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36630404145970310}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1591959766538966085
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1591959767614796960}
   - component: {fileID: 1591959767614796963}
+  - component: {fileID: 2803757980778888177}
   m_Layer: 8
   m_Name: WeaponADSCam
   m_TagString: Untagged
@@ -263,6 +250,29 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1591959766538966084}
+--- !u!114 &2803757980778888177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591959767614796961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 0.2
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &2449851334094550201
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +575,6 @@ GameObject:
   - component: {fileID: 1704005603150115842}
   - component: {fileID: 5639197239007750541}
   - component: {fileID: 6969188350729946705}
-  - component: {fileID: 3401078044294708700}
   m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -638,19 +647,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3401078044294708700
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419599070648799933}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4652038691969925009
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,6 +823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5031373402504124222}
   - component: {fileID: 8772137086625311784}
+  - component: {fileID: 3126484263645195358}
   m_Layer: 8
   m_Name: HitscanSniper
   m_TagString: Untagged
@@ -872,8 +869,64 @@ MonoBehaviour:
   _currentSecondaryCooldown: 0
   _currentPrimaryEnergy: 0
   _currentSecondaryEnergy: 0
+  _currentPrimaryEnergyRegenTimer: 0
+  _currentSecondaryEnergyRegenTimer: 0
   _regenPrimaryEnergy: 0
   _regenSecondaryEnergy: 0
+  impulseSource: {fileID: 3126484263645195358}
+--- !u!114 &3126484263645195358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031373402504124223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 1
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &7574687300340989433
 GameObject:
   m_ObjectHideFlags: 0

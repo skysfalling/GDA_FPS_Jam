@@ -26,6 +26,8 @@ MonoBehaviour:
   energyMax: 60
   energyCost: 1
   shareEnergyWithOtherForm: 0
+  screenShakeImpulseMagnitude: 0.01
+  screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
   _bullet: {fileID: 3648734522970492190, guid: da7733cbac6efab47bba3356a98bb6a9, type: 3}
   raycastCheckLayers:
     serializedVersion: 2

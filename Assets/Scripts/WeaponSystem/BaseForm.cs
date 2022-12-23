@@ -31,7 +31,11 @@ public abstract class BaseForm : ScriptableObject
     public float energyCost;
     public bool shareEnergyWithOtherForm;
 
-
+    [Header("Screen Shake Impulse")]
+    [Tooltip("Amount of shake. Leave at 0 for no shake.")]
+    public float screenShakeImpulseMagnitude;
+    [Tooltip("Leave at 0,0,0 for random direction")]
+    public Vector3 screenShakeImpulseDirection;
 
 
     public virtual void FormAction(float context)

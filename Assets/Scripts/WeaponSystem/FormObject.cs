@@ -25,6 +25,8 @@ public class FormObject : MonoBehaviour
     public bool _regenSecondaryEnergy = false;
     private bool _bothFormsShareEnergy = false;
 
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+
     private void Start()
     {
         if(primaryForm != null)
@@ -274,27 +276,35 @@ public class FormObject : MonoBehaviour
             return;
         }
 
-        if (_currentPrimaryCooldown <= 0 && CheckValidEnergy(0))
+        if (_currentPrimaryCooldown > 0 || !CheckValidEnergy(0))
         {
-            if (primaryForm.firingType == BaseForm.FireType.Auto)
-            {
-                _currentPrimaryCooldown = primaryForm.actionCooldown;
-                primaryForm.FormAction(context);
-            }
-            else if (primaryForm.firingType == BaseForm.FireType.Semi)
-            {
-                _currentPrimaryCooldown = primaryForm.actionCooldown;
-                primaryForm.FormAction(context);
-            }
-            else if (primaryForm.firingType == BaseForm.FireType.Hold)
-            {
-                _currentPrimaryCooldown = primaryForm.actionCooldown;
-                primaryForm.FormAction(context);
-            }
+            return;
         }
 
-        
+        if (primaryForm.firingType == BaseForm.FireType.Auto)
+        {
+            _currentPrimaryCooldown = primaryForm.actionCooldown;
+            primaryForm.FormAction(context);
+
+        }
+        else if (primaryForm.firingType == BaseForm.FireType.Semi)
+        {
+            _currentPrimaryCooldown = primaryForm.actionCooldown;
+            primaryForm.FormAction(context);
+        }
+        else if (primaryForm.firingType == BaseForm.FireType.Hold)
+        {
+            _currentPrimaryCooldown = primaryForm.actionCooldown;
+            primaryForm.FormAction(context);
+
+        }
+
+        GeneratePrimaryImpulse();
+
+
     }
+
+    
 
     public void UseSecondaryAction(float context)
     {
@@ -303,26 +313,53 @@ public class FormObject : MonoBehaviour
             return;
         }
 
-        if (_currentSecondaryCooldown <= 0 && CheckValidEnergy(1))
+        if (_currentSecondaryCooldown > 0 || !CheckValidEnergy(1))
         {
-            if (secondaryForm.firingType == BaseForm.FireType.Auto)
-            {
-                _currentSecondaryCooldown = secondaryForm.actionCooldown;
-                secondaryForm.FormAction(context);
-            }
-            else if (secondaryForm.firingType == BaseForm.FireType.Semi)
-            {
-                _currentSecondaryCooldown = secondaryForm.actionCooldown;
-                secondaryForm.FormAction(context);
-            }
-            else if (secondaryForm.firingType == BaseForm.FireType.Hold)
-            {
-                _currentSecondaryCooldown = secondaryForm.actionCooldown;
-                secondaryForm.FormAction(context);
-            }
+            return;
+        }
+
+        if (secondaryForm.firingType == BaseForm.FireType.Auto)
+        {
+            _currentSecondaryCooldown = secondaryForm.actionCooldown;
+            secondaryForm.FormAction(context);
+        }
+        else if (secondaryForm.firingType == BaseForm.FireType.Semi)
+        {
+            _currentSecondaryCooldown = secondaryForm.actionCooldown;
+            secondaryForm.FormAction(context);
+        }
+        else if (secondaryForm.firingType == BaseForm.FireType.Hold)
+        {
+            _currentSecondaryCooldown = secondaryForm.actionCooldown;
+            secondaryForm.FormAction(context);
+        }
+
+        GenerateSecondaryImpulse();
+    }
+
+    void GeneratePrimaryImpulse()
+    {
+        if (primaryForm.screenShakeImpulseDirection == Vector3.zero)
+        {
+            impulseSource.GenerateImpulse(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * primaryForm.screenShakeImpulseMagnitude);
+        }
+        else
+        {
+            impulseSource.GenerateImpulse(primaryForm.screenShakeImpulseDirection * primaryForm.screenShakeImpulseMagnitude);
         }
     }
 
+    void GenerateSecondaryImpulse()
+    {
+        if (secondaryForm.screenShakeImpulseDirection == Vector3.zero)
+        {
+            impulseSource.GenerateImpulse(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * secondaryForm.screenShakeImpulseMagnitude);
+        }
+        else
+        {
+            impulseSource.GenerateImpulse(secondaryForm.screenShakeImpulseDirection * secondaryForm.screenShakeImpulseMagnitude);
+        }
+    }
     void DecrementTimers()
     {
         if (_currentPrimaryCooldown > 0)
