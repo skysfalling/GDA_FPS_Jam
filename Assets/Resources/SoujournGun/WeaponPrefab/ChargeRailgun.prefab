@@ -946,7 +946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryForm: {fileID: 11400000, guid: d290c844d36306440b54e469ac178a7e, type: 2}
   secondaryForm: {fileID: 11400000, guid: 940a89d73115823408630a7eed913223, type: 2}
-  virtualCamera: {fileID: 1591959767614796963}
+  ADSVirtualCamera: {fileID: 1591959767614796963}
   barrelSpawn: {fileID: 1361343249479498785}
   weaponID: chargeRailgun
   _currentPrimaryCooldown: 0

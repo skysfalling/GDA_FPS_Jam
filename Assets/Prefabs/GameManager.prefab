@@ -182,6 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5342817933673353782}
   - component: {fileID: 5342817933673353776}
+  - component: {fileID: 6964993550827869423}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -454,6 +455,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6964993550827869423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342817933673353783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad6d2552691cf14db7129abb2d9c124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioOneShotPrefab: {fileID: 6665425759844494090, guid: c72ddcf495dee96468dbe6b3e53f7064,
+    type: 3}
+  chanceToPlayVoiceLine: 0
+  soundEffectList: []
 --- !u!1001 &4883765739570608880
 PrefabInstance:
   m_ObjectHideFlags: 0

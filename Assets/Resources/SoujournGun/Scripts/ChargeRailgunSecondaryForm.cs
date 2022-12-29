@@ -24,6 +24,7 @@ public class ChargeRailgunSecondaryForm : BaseForm
         // If the weapon were hitscan, we could skip this and just add tracers from the gun to the desired destination
 
         bullet.GetComponent<BaseHitscan>().SetTargetDirection(Camera.main.transform.forward);
+        
 
     }
 }

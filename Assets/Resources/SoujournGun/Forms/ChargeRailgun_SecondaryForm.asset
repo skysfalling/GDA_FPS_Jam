@@ -28,5 +28,7 @@ MonoBehaviour:
   shareEnergyWithOtherForm: 0
   screenShakeImpulseMagnitude: 0.1
   screenShakeImpulseDirection: {x: 0, y: 1, z: 0}
+  audioPath: SoujournGun/Audio/Apply_Status
+  volume: 1
   _bullet: {fileID: 3648734522970492190, guid: 8e37dacd0a5de454c994feda08e1cdbb, type: 3}
   maximumDamage: 120

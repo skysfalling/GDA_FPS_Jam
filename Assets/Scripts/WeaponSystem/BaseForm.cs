@@ -37,15 +37,27 @@ public abstract class BaseForm : ScriptableObject
     [Tooltip("Leave at 0,0,0 for random direction")]
     public Vector3 screenShakeImpulseDirection;
 
+    [Header("Audio")]
+    public string audioPath;
+    public float volume = 1.0f;
 
     public virtual void FormAction(float context)
     {
-
+        PlayFormAudio();
     }
 
     public virtual void InitializeForm(Transform input)
     {
         pivot = input;
+    }
+
+    public virtual void PlayFormAudio()
+    {
+        if (audioPath != "")
+        {
+            AudioManager.Instance.PlaySoundEffect(audioPath, volume);
+        }
+            
     }
 
 

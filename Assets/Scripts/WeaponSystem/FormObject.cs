@@ -8,21 +8,24 @@ public class FormObject : MonoBehaviour
 
     public BaseForm primaryForm;
     public BaseForm secondaryForm;
-    public CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera ADSVirtualCamera;
     public Transform barrelSpawn;
     public string weaponID;
 
-    public float _currentPrimaryCooldown = 0;
-    public float _currentSecondaryCooldown = 0;
 
-    public float _currentPrimaryEnergy = 0;
-    public float _currentSecondaryEnergy = 0;
 
-    public float _currentPrimaryEnergyRegenTimer = 0;
-    public float _currentSecondaryEnergyRegenTimer = 0;
+    [HideInInspector] public float _currentPrimaryCooldown = 0;
+    [HideInInspector] public float _currentSecondaryCooldown = 0;
 
-    public bool _regenPrimaryEnergy = false;
-    public bool _regenSecondaryEnergy = false;
+    [HideInInspector] public float _currentPrimaryEnergy = 0;
+    [HideInInspector] public float _currentSecondaryEnergy = 0;
+
+    [HideInInspector] public float _currentPrimaryEnergyRegenTimer = 0;
+    [HideInInspector] public float _currentSecondaryEnergyRegenTimer = 0;
+
+    [HideInInspector] public bool _regenPrimaryEnergy = false;
+    [HideInInspector] public bool _regenSecondaryEnergy = false;
+
     private bool _bothFormsShareEnergy = false;
 
     [SerializeField] private CinemachineImpulseSource impulseSource;

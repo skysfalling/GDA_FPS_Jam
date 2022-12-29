@@ -73,6 +73,13 @@ public class PlayerController : UnitySingleton<PlayerController>
         _vcam.m_Lens.FieldOfView = fov;
     }
 
+    public void UpdateBaseFOV(float newFOV)
+    {
+        _FOV = newFOV;
+        _sprintFOV = newFOV - 10;
+        ModifyFOV(_FOV);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

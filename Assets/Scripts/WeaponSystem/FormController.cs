@@ -257,12 +257,12 @@ public class FormController : UnitySingleton<FormController>
     {
         if (isADS)
         {
-            currentForm.virtualCamera.enabled = true;
+            currentForm.ADSVirtualCamera.enabled = true;
             PlayerController.Instance.isPressingSprint = false;
         }
         else
         {
-            currentForm.virtualCamera.enabled = false;
+            currentForm.ADSVirtualCamera.enabled = false;
         }
     }
 
