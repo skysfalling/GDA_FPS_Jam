@@ -63,6 +63,17 @@ public class AudioManager : UnitySingleton<AudioManager>
         CheckAndPlaySFXFromResources(effectName, volume);
     }
 
+    public void PlaySoundEffect(AudioClip clip, float volume)
+    {
+        if(clip == null)
+        {
+            return;
+        }
+
+        var oneShot = Instantiate(audioOneShotPrefab, Camera.main.transform.position, Quaternion.identity, SpawnedGarbageController.Instance.transform);
+        oneShot.GetComponent<AudioOneShot>().SetAudioStats(clip, volume);
+    }
+
 
     void CheckAndPlaySFXFromResources(string id, float volume)
     {

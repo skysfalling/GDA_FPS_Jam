@@ -9,6 +9,7 @@ public class ChargeRailgunPrimaryForm : DefaultShootForm
     //FormAction() is called each time the form "shoots".
     public override void FormAction(float context)
     {
+        
 
         //Spawn bullet prefab at weapon's barrel position
         var bullet = Instantiate(_bullet, FormController.Instance.currentForm.barrelSpawn.position, Quaternion.identity);
@@ -29,5 +30,7 @@ public class ChargeRailgunPrimaryForm : DefaultShootForm
             var dir = PlayerController.Instance._playerCamera.forward;
             bullet.GetComponent<BaseBullet>().SetDirection(dir);
         }
+
+        PlayFormAudio();
     }
 }

@@ -38,7 +38,7 @@ public abstract class BaseForm : ScriptableObject
     public Vector3 screenShakeImpulseDirection;
 
     [Header("Audio")]
-    public string audioPath;
+    public AudioClip audioClip;
     public float volume = 1.0f;
 
     public virtual void FormAction(float context)
@@ -53,9 +53,9 @@ public abstract class BaseForm : ScriptableObject
 
     public virtual void PlayFormAudio()
     {
-        if (audioPath != "")
+        if (audioClip != null)
         {
-            AudioManager.Instance.PlaySoundEffect(audioPath, volume);
+            AudioManager.Instance.PlaySoundEffect(audioClip, volume);
         }
             
     }
