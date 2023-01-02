@@ -16,8 +16,8 @@ public abstract class BaseForm : ScriptableObject
     [Header("Base Form Data")]
     public string id;
     public string description;
-    public Sprite icon;
-    public Transform pivot;
+    [HideInInspector] public Sprite icon;
+    [HideInInspector] public Transform pivot;
     public FireType firingType;
     public float actionCooldown;
     public float maxHoldDuration;
