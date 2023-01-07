@@ -29,12 +29,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.66, y: 1.732, z: 3.69}
+  m_LocalPosition: {x: -9.36, y: 0.64199996, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5342817933673353782}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &330585545
 Camera:
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras:
-  - {fileID: 1574330968}
+  - {fileID: 0}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -202,7 +202,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4764210616568506013}
   - {fileID: 4354949263014802819}
   - {fileID: 330585546}
   m_Father: {fileID: 0}
@@ -236,7 +235,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -252,7 +251,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Look
         m_Mode: 0
@@ -268,7 +267,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9111348397107072290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FormController, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 0
@@ -324,7 +323,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 0
@@ -340,7 +339,7 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnInspect
         m_Mode: 0
@@ -356,7 +355,7 @@ MonoBehaviour:
     m_ActionName: Player/LookInspect[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnScroll
         m_Mode: 0
@@ -372,7 +371,7 @@ MonoBehaviour:
     m_ActionName: Player/Scroll[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506014}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
@@ -388,7 +387,7 @@ MonoBehaviour:
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -404,7 +403,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764210616568506017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnSprint
         m_Mode: 0
@@ -420,7 +419,7 @@ MonoBehaviour:
     m_ActionName: Player/Sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9111348397107072290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FormController, Assembly-CSharp
         m_MethodName: AltFire
         m_Mode: 0
@@ -436,7 +435,7 @@ MonoBehaviour:
     m_ActionName: Player/AltFire
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9111348397107072290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FormController, Assembly-CSharp
         m_MethodName: AimDownSights
         m_Mode: 0
@@ -469,7 +468,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioOneShotPrefab: {fileID: 6665425759844494090, guid: c72ddcf495dee96468dbe6b3e53f7064,
     type: 3}
-  chanceToPlayVoiceLine: 0
   soundEffectList: []
 --- !u!1001 &4883765739570608880
 PrefabInstance:
@@ -502,7 +500,7 @@ PrefabInstance:
     - target: {fileID: 9199020428688658291, guid: 3cf3052b7c46aaf49b0278628e8727d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9199020428688658291, guid: 3cf3052b7c46aaf49b0278628e8727d1,
         type: 3}
@@ -607,119 +605,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4883765739570608880}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6036162201740866530
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5342817933673353782}
-    m_Modifications:
-    - target: {fileID: 1286096392985679171, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_Volume
-      value: 
-      objectReference: {fileID: 330585549}
-    - target: {fileID: 1286096392985679228, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b325a024e0e4266408904aaf41e0a2bc, type: 3}
---- !u!20 &1574330968 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6036162203272417722, guid: b325a024e0e4266408904aaf41e0a2bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6036162201740866530}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4764210616568506013 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1286096392985679231, guid: b325a024e0e4266408904aaf41e0a2bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6036162201740866530}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4764210616568506014 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1286096392985679228, guid: b325a024e0e4266408904aaf41e0a2bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6036162201740866530}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4764210616568506017 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1286096392985679171, guid: b325a024e0e4266408904aaf41e0a2bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6036162201740866530}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4764210616568506014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d2cf2f1459e9c40948414e3613bbaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &9111348397107072290 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3294034159097560768, guid: b325a024e0e4266408904aaf41e0a2bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6036162201740866530}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4764210616568506014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b5973adb5e904d42b61860d8796ec7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -12,8 +12,8 @@ public class ChargeRailgunPrimaryForm : DefaultShootForm
         
 
         //Spawn bullet prefab at weapon's barrel position
-        var bullet = Instantiate(_bullet, FormController.Instance.currentForm.barrelSpawn.position, Quaternion.identity);
-        bullet.transform.GetComponent<ChargeRailgunBaseBullet>().hostForm = FormController.Instance.currentForm;
+        var bullet = Instantiate(_bullet, GameController.Instance.ownedFormController.currentForm.barrelSpawn.position, Quaternion.identity);
+        bullet.transform.GetComponent<ChargeRailgunBaseBullet>().hostForm = GameController.Instance.ownedFormController.currentForm;
         SpawnedGarbageController.Instance.AddAsChild(bullet);
         RaycastHit info;
 
@@ -27,7 +27,7 @@ public class ChargeRailgunPrimaryForm : DefaultShootForm
         }
         else
         {
-            var dir = PlayerController.Instance._playerCamera.forward;
+            var dir = GameController.Instance.ownedPlayer._playerCamera.forward;
             bullet.GetComponent<BaseBullet>().SetDirection(dir);
         }
 

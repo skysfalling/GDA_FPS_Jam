@@ -5,8 +5,9 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using Unity.Netcode;
 
-public class PlayerController : UnitySingleton<PlayerController>
+public class PlayerController : NetworkBehaviour
 {
     [Header("Serialized Variables")]
     [SerializeField] private Rigidbody _rigidbody;
@@ -14,7 +15,9 @@ public class PlayerController : UnitySingleton<PlayerController>
     [SerializeField] private CinemachineVirtualCamera _vcam;
     [SerializeField] private Volume m_Volume;
     private Vignette m_Vignette;
-    
+    [SerializeField] private List<Camera> playerCameras;
+    [SerializeField] private List<CinemachineVirtualCamera> virtualCameras;
+
 
     [Header("Current Player State")]
     public Vector3 moveDirection;
@@ -24,10 +27,11 @@ public class PlayerController : UnitySingleton<PlayerController>
     public bool isSprinting;
     public bool isPressingSprint;
     private Vector3 _currentVelocity;
-    private float xRotation = 0f;
+    public float xRotation = 0f;
     public float scrollDirection;
     public float scrollModifier;
     public bool canControlMovement = true;
+    private NetworkVariable<float> cameraRotation = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Interaction System")]
     [SerializeField] private Transform _grabPivot;
@@ -60,12 +64,25 @@ public class PlayerController : UnitySingleton<PlayerController>
     private float currentVFXState;
     [SerializeField] private float currentVFXStateRate;
 
-    public override void Awake()
+    public void Awake()
     {
-        base.Awake();
         _vcam.m_Lens.FieldOfView = _FOV;
         _currentMaximumInputSpeed = _maximumInputSpeed;
         m_Volume.profile.TryGet<Vignette>(out m_Vignette);
+
+        
+
+
+        //Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+            GameController.Instance.ownedPlayer = this;
+        }
+
     }
 
     public void ModifyFOV(float fov)
@@ -83,12 +100,35 @@ public class PlayerController : UnitySingleton<PlayerController>
     // Start is called before the first frame update
     void Start()
     {
+        if (!IsOwner)
+        {
+            foreach (Camera cam in playerCameras)
+            {
+                cam.enabled = false;
+                if (cam.GetComponent<AudioListener>() != null)
+                {
+                    cam.GetComponent<AudioListener>().enabled = false;
+                }
+            }
+
+            foreach (CinemachineVirtualCamera cam in virtualCameras)
+            {
+                cam.enabled = false;
+            }
+        }
         InitializeRigidbody();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            xRotation = cameraRotation.Value;
+            _playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            return;
+        }
+
         if (!canControlMovement)
         {
             return;
@@ -112,6 +152,11 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     private void FixedUpdate()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         if (!canControlMovement)
         {
             return;
@@ -141,6 +186,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
         xRotation -= lookY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        cameraRotation.Value = xRotation;
 
         transform.Rotate(Vector3.up * lookX);
         _playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
@@ -210,12 +256,20 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void Look(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         lookDirection = context.ReadValue<Vector2>();
         
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         moveDirection = context.ReadValue<Vector2>();
         UpdateMaximumInputSpeed();
 
@@ -305,6 +359,11 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         if (!context.started)
         {
             return;
@@ -325,6 +384,10 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void OnInspect(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         if (currentGrabbable == null)
         {
             return;
@@ -352,6 +415,10 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         if (context.started)
         {
             ApplyJump();
@@ -360,7 +427,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.started && !FormController.Instance.isADS)
+        if (context.started && !GameController.Instance.ownedFormController.isADS)
         {
             isPressingSprint = true;
             UpdateMaximumInputSpeed();
@@ -376,7 +443,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     public void UpdateMaximumInputSpeed()
     {
-        if (FormController.Instance.isADS)
+        if (GameController.Instance.ownedFormController.isADS)
         {
             _currentMaximumInputSpeed = _maximumInputSpeed * _ADSModifier;
             return;
@@ -398,11 +465,11 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     void UpdateSprintVFX()
     {
-        if ((isSprinting || FormController.Instance.isADS) && currentVFXState < 1)
+        if ((isSprinting || GameController.Instance.ownedFormController.isADS) && currentVFXState < 1)
         {
             currentVFXState += Time.deltaTime * currentVFXStateRate;
         }
-        else if(currentVFXState > 0 && !(isSprinting || FormController.Instance.isADS))
+        else if(currentVFXState > 0 && !(isSprinting || GameController.Instance.ownedFormController.isADS))
         {
             currentVFXState -= Time.deltaTime * currentVFXStateRate;
         }

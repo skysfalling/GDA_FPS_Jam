@@ -15,9 +15,9 @@ public class ChargeRailgunSecondaryForm : BaseForm
         base.FormAction(-1);
 
         //Spawn bullet prefab at weapon's barrel position
-        var bullet = Instantiate(_bullet, FormController.Instance.currentForm.barrelSpawn.position, Quaternion.identity);
-        bullet.GetComponent<BaseHitscan>().damage = maximumDamage * ((FormController.Instance.currentForm._currentSecondaryEnergy+1)/energyMax);
-        FormController.Instance.currentForm._currentSecondaryEnergy = 0;
+        var bullet = Instantiate(_bullet, GameController.Instance.ownedFormController.currentForm.barrelSpawn.position, Quaternion.identity);
+        bullet.GetComponent<BaseHitscan>().damage = maximumDamage * ((GameController.Instance.ownedFormController.currentForm._currentSecondaryEnergy+1)/energyMax);
+        GameController.Instance.ownedFormController.currentForm._currentSecondaryEnergy = 0;
         SpawnedGarbageController.Instance.AddAsChild(bullet);
         // Raycast into world from camera position + direction, if target found, set bullet target position to that point, else, bullet direction mimics player camera.
         // This allows us to shoot these projectile bullets from the gun rather than the center of the screen to get the desired appearance

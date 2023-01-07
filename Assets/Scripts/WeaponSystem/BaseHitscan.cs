@@ -20,7 +20,7 @@ public class BaseHitscan : MonoBehaviour
     {
         Destroy(gameObject, lifespan);
 
-        if (!FormController.Instance.isADS)
+        if (!GameController.Instance.ownedFormController.isADS)
         {
             transform.forward += new Vector3(Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread));
         }
@@ -40,7 +40,7 @@ public class BaseHitscan : MonoBehaviour
         }
         LeanTween.alpha(gameObject, 0, lifespan);
 
-        lineRenderer.SetPosition(0, FormController.Instance.currentForm.barrelSpawn.position);
+        lineRenderer.SetPosition(0, GameController.Instance.ownedFormController.currentForm.barrelSpawn.position);
         lineRenderer.SetPosition(1, targetPosition);
         
         if(!hasRaycastHit)

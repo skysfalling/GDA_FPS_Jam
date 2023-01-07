@@ -29,7 +29,7 @@ public class PickupWeapon : Interactable
     public void IsBeingGrabbed()
     {
         //PlayerController.Instance.SetCurrentGrabbable(this);
-        FormController.Instance.SetNewWeapon(weaponPrefab);
+        GameController.Instance.ownedFormController.SetNewWeapon(weaponPrefab);
     }
 
     public void SetMesh(GameObject meshPrefab)

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class FormController : UnitySingleton<FormController>
+public class FormController : NetworkBehaviour
 {
 
     public FormObject currentForm;
@@ -11,6 +12,7 @@ public class FormController : UnitySingleton<FormController>
     public List<FormObject> formList;
     public Transform spawnPivot;
     [SerializeField] private GameObject _formParent;
+    public GameObject projectileBuffer;
     public Transform ADSPosition;
 
     [Header("Primary Status")]
@@ -25,6 +27,20 @@ public class FormController : UnitySingleton<FormController>
 
     [Header("ADS Status")]
     public bool isADS;
+
+    private void Awake()
+    {
+        
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+            GameController.Instance.ownedFormController = this;
+        }
+        
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +86,11 @@ public class FormController : UnitySingleton<FormController>
 
     public void SwitchForm(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         if (context.started)
         {
             currentFormIndex++;
@@ -177,6 +198,11 @@ public class FormController : UnitySingleton<FormController>
 
     public void Fire(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         if (currentForm.primaryForm == null)
         {
             return;
@@ -202,7 +228,12 @@ public class FormController : UnitySingleton<FormController>
 
     public void AltFire(InputAction.CallbackContext context)
     {
-        if(currentForm.secondaryForm == null)
+        if (!IsOwner)
+        {
+            return;
+        }
+
+        if (currentForm.secondaryForm == null)
         {
             return;
         }
@@ -226,6 +257,11 @@ public class FormController : UnitySingleton<FormController>
 
     public void AimDownSights(InputAction.CallbackContext context)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         //If player starts holding down ADS
         if (context.started)
         {
@@ -234,7 +270,7 @@ public class FormController : UnitySingleton<FormController>
             //Move the weapon to the ADS position to fix bullet spawn position
             LeanTween.move(currentForm.gameObject, ADSPosition, 0.15f).setEase(LeanTweenType.easeOutQuad);
             //Update Max player movement speed
-            PlayerController.Instance.UpdateMaximumInputSpeed();
+            GameController.Instance.ownedPlayer.UpdateMaximumInputSpeed();
 
         }
 
@@ -246,7 +282,7 @@ public class FormController : UnitySingleton<FormController>
             //Move the weapon back to the formParent/weaponParent position to fix bullet spawn position
             LeanTween.move(currentForm.gameObject, _formParent.transform, 0.15f).setEase(LeanTweenType.easeOutQuad);
             //Update Max player movement speed
-            PlayerController.Instance.UpdateMaximumInputSpeed();
+            GameController.Instance.ownedPlayer.UpdateMaximumInputSpeed();
 
         }
 
@@ -258,12 +294,25 @@ public class FormController : UnitySingleton<FormController>
         if (isADS)
         {
             currentForm.ADSVirtualCamera.enabled = true;
-            PlayerController.Instance.isPressingSprint = false;
+            GameController.Instance.ownedPlayer.isPressingSprint = false;
         }
         else
         {
             currentForm.ADSVirtualCamera.enabled = false;
         }
+    }
+
+    [ServerRpc]
+    public void SpawnShootServerRpc()
+    {
+        if(projectileBuffer == null)
+        {
+            return;
+        }
+        //Spawn bullet prefab at weapon's barrel position
+        var bullet = Instantiate(projectileBuffer, GameController.Instance.ownedFormController.currentForm.barrelSpawn.position, Quaternion.identity);
+        bullet.GetComponent<NetworkObject>().Spawn();
+        //SpawnedGarbageController.Instance.AddAsChild(bullet);
     }
 
 

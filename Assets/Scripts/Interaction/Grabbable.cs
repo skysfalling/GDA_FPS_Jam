@@ -32,7 +32,7 @@ public class Grabbable : Interactable
 
     public void IsBeingGrabbed()
     {
-        PlayerController.Instance.SetCurrentGrabbable(this);
+        GameController.Instance.ownedPlayer.SetCurrentGrabbable(this);
         if (!dontAlterConstraints)
         {
             _rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -48,10 +48,10 @@ public class Grabbable : Interactable
 
     public void IsNoLongerBeingGrabbed()
     {
-        if(PlayerController.Instance.currentGrabbable == this)
+        if(GameController.Instance.ownedPlayer.currentGrabbable == this)
         {
             UnlockGrabbable();
-            PlayerController.Instance.currentGrabbable = null;
+            GameController.Instance.ownedPlayer.currentGrabbable = null;
             if (!dontAlterConstraints)
             {
                 _rb.constraints = RigidbodyConstraints.None;

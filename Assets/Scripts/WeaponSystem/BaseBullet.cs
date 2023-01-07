@@ -21,10 +21,30 @@ public class BaseBullet : MonoBehaviour
 
     public Vector3 targetPosition;
     public bool hasTargetPosition;
+    public LayerMask raycastCheckLayers;
 
     public virtual void Start()
     {
+        RaycastHit info;
+
+        // Raycast into world from camera position + direction, if target found, set bullet target position to that point, else, bullet direction mimics player camera.
+        // This allows us to shoot these projectile bullets from the gun rather than the center of the screen to get the desired appearance
+        // If the weapon were hitscan, we could skip this and just add tracers from the gun to the desired destination
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out info, 200.0f, raycastCheckLayers))
+        {
+            var pos = info.point;
+            SetTargetPosition(pos);
+        }
+        else
+        {
+            var dir = GameController.Instance.ownedPlayer._playerCamera.forward;
+            SetDirection(dir);
+        }
+
         ApplyForce();
+
+        
+
         Destroy(gameObject, lifespan);
     }
 
@@ -46,7 +66,7 @@ public class BaseBullet : MonoBehaviour
         float spreadValue = 0;
 
         //If the player is not aiming down sights, use the hip random spread, else use the ADS spread.
-        if (!FormController.Instance.isADS)
+        if (!GameController.Instance.ownedFormController.isADS)
         {
             spreadValue = hipSpread;
         }
