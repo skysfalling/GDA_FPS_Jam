@@ -81,7 +81,6 @@ public class FormObject : MonoBehaviour
     {
         if (_bothFormsShareEnergy)
         {
-
             return;
         }
 
@@ -220,9 +219,6 @@ public class FormObject : MonoBehaviour
                     break;
             
             }
-
-
-
             
         }
 

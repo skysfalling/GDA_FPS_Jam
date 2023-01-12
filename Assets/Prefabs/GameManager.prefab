@@ -450,6 +450,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f7020319-552c-424f-989d-1878c345c560
     m_ActionName: Player/ADS[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9111348397107072290}
+        m_TargetAssemblyTypeName: FormController, Assembly-CSharp
+        m_MethodName: TryReload
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 64f4a0f6-d49a-4393-bd28-9b3094a0f478
+    m_ActionName: Player/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -469,7 +485,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioOneShotPrefab: {fileID: 6665425759844494090, guid: c72ddcf495dee96468dbe6b3e53f7064,
     type: 3}
-  chanceToPlayVoiceLine: 0
   soundEffectList: []
 --- !u!1001 &4883765739570608880
 PrefabInstance:

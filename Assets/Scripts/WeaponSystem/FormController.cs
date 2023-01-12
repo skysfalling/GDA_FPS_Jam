@@ -13,6 +13,10 @@ public class FormController : UnitySingleton<FormController>
     [SerializeField] private GameObject _formParent;
     public Transform ADSPosition;
 
+    [Header("Overall Status")]
+    public bool _isReloading = false;
+
+
     [Header("Primary Status")]
     public bool _currentPrimaryIsPressed = false;
     public bool _currentPrimaryIsReady = true;
@@ -103,12 +107,17 @@ public class FormController : UnitySingleton<FormController>
         _currentSecondaryIsPressed = false;
         _currentPrimaryHoldDuration = 0;
         _currentSecondaryHoldDuration = 0;
+        _isReloading = false;
     }
 
 
     void UseActions()
     {
-        
+        if (_isReloading)
+        {
+            return;
+        }
+
         CheckPrimaryActions();
         CheckSecondaryActions();
 
@@ -266,5 +275,59 @@ public class FormController : UnitySingleton<FormController>
         }
     }
 
+
+    public void TryReload(InputAction.CallbackContext context)
+    {
+        if (!context.started || _isReloading)
+        {
+            return;
+        }
+
+        if(currentForm.primaryForm.energyRegenType != BaseForm.EnergyRegenerationType.ManualReload && (currentForm.secondaryForm == null || currentForm.secondaryForm.energyRegenType != BaseForm.EnergyRegenerationType.ManualReload) )
+        {
+            Debug.Log("Manual Reload Failed: Your Form's don't have a manual reload energy type set!");
+            return;
+        }
+
+        if(currentForm.primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.ManualReload)
+        {
+            StartCoroutine(ReloadRoutine(currentForm.primaryForm.energyRegenCooldown));
+        }
+        else
+        {
+            StartCoroutine(ReloadRoutine(currentForm.secondaryForm.energyRegenCooldown));
+        }
+
+    }
+
+    IEnumerator ReloadRoutine(float reloadTime)
+    {
+        _isReloading = true;
+
+        //add reload anim code here
+
+        yield return new WaitForSeconds(reloadTime);
+
+        OnManualReloadComplete();
+
+        _isReloading = false;
+
+    }
+
+    void OnManualReloadComplete()
+    {
+        if(currentForm.primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.ManualReload)
+        {
+            currentForm._currentPrimaryEnergy = currentForm.primaryForm.energyMax;
+        }
+
+        if (currentForm.secondaryForm != null && currentForm.secondaryForm.energyRegenType == BaseForm.EnergyRegenerationType.ManualReload)
+        {
+            currentForm._currentSecondaryEnergy = currentForm.secondaryForm.energyMax;
+        }
+
+        WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(currentForm);
+
+    }
 
 }

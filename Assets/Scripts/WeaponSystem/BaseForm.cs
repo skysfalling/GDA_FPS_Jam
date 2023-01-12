@@ -10,7 +10,7 @@ public abstract class BaseForm : ScriptableObject
 {
 
     public enum EnergyUsage { Unlimited, CooldownMag, SingleMag };
-    public enum EnergyRegenerationType { ConstantFullFill, ConstantIncremental, EmptyFullFill };
+    public enum EnergyRegenerationType { ConstantFullFill, ConstantIncremental, EmptyFullFill, ManualReload };
     public enum FireType { Auto, Semi, Hold };
 
     [Header("Base Form Data")]
