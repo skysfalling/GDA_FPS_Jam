@@ -17,17 +17,20 @@ MonoBehaviour:
   icon: {fileID: 0}
   pivot: {fileID: 0}
   firingType: 0
-  actionCooldown: 0
+  actionCooldown: 0.1
   maxHoldDuration: 0
-  energyType: 2
+  energyType: 0
   energyRegenType: 0
   energyRegenCooldown: 0
   energyRegenRate: 0
   energyMax: 10
   energyCost: 1
   shareEnergyWithOtherForm: 0
+  autoReloadOnEmpty: 0
   screenShakeImpulseMagnitude: 0.01
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
+  audioClip: {fileID: 0}
+  volume: 1
   _bullet: {fileID: 3648734522970492190, guid: 1bfd2d6e72054b049949306fc336100d, type: 3}
   raycastCheckLayers:
     serializedVersion: 2

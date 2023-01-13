@@ -7,11 +7,16 @@ using NaughtyAttributes;
 public class FormObject : MonoBehaviour
 {
     [Expandable]
+    [Tooltip("The primary form for this weapon. Attempts to run it's FormAction() on left click.")]
     public BaseForm primaryForm;
     [Expandable]
+    [Tooltip("[OPTIONAL] The optional secondary form for this weapon. Attempts to run it's FormAction() on middle mouse button.")]
     public BaseForm secondaryForm;
+    [Tooltip("The virtual camera that the weapon camera will swap to when the user aims down sights (right click).")]
     public CinemachineVirtualCamera ADSVirtualCamera;
+    [Tooltip("The transform this weapon will spawn projectiles from.")]
     public Transform barrelSpawn;
+    [Tooltip("[IMPORTANT] The weapon ID for this weapon. This should match the 'id' in the weapon_info.json file in your weapon's folder.")]
     public string weaponID;
 
 
@@ -30,6 +35,7 @@ public class FormObject : MonoBehaviour
 
     private bool _bothFormsShareEnergy = false;
 
+    [Tooltip("The Cinemachine impulse source for this weapon. I wouldn't mess with this.")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
     private void Start()
