@@ -82,5 +82,6 @@ public class SettingsManager : MonoBehaviour
     {
         this.FOV = FOV;
         fovText.text = FOV.ToString("0");
+        PlayerController.Instance.UpdateBaseFOV(this.FOV);
     }
 }
