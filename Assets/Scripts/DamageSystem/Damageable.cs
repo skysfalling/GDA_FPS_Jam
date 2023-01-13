@@ -14,6 +14,7 @@ public abstract class Damageable : MonoBehaviour
     [Header("Damageable Stats")]
     public float CurrentHealth;
     public float BaseHealth;
+    public bool InfiniteHealth;
 
     [Header("Serialized Prefabs")]
     [SerializeField] private GameObject damagePop;
@@ -40,8 +41,11 @@ public abstract class Damageable : MonoBehaviour
         SpawnedGarbageController.Instance.AddAsChild(DamagePop);
         DamagePop.GetComponent<DamagePopFade>().Setup(damage);
 
-        /// Apply Damage
-        CurrentHealth -= damage;
+        /// Apply Damage if able
+        if (!InfiniteHealth)
+        {
+            CurrentHealth -= damage;
+        }
 
         /// Process damage
         if (CurrentHealth <= 0)

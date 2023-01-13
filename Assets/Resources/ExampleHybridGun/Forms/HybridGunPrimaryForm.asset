@@ -17,14 +17,14 @@ MonoBehaviour:
   icon: {fileID: 0}
   pivot: {fileID: 0}
   firingType: 0
-  actionCooldown: 0.2
+  actionCooldown: 0
   maxHoldDuration: 0
-  energyType: 0
-  energyRegenType: 1
+  energyType: 2
+  energyRegenType: 0
   energyRegenCooldown: 0
   energyRegenRate: 0
-  energyMax: 0
-  energyCost: 0
+  energyMax: 10
+  energyCost: 1
   shareEnergyWithOtherForm: 0
   screenShakeImpulseMagnitude: 0.01
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}

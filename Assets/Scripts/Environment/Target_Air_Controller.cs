@@ -17,7 +17,10 @@ public class Target_Air_Controller : HitInteractable
     float rate_of_rot = 200;
     bool destroy = false;
 
+
     public UnityEvent RunOnHit;
+
+
 
     public override void Start()
     {
