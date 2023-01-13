@@ -268,6 +268,7 @@ public class FormController : UnitySingleton<FormController>
         if (isADS)
         {
             currentForm.ADSVirtualCamera.enabled = true;
+            PlayerController.Instance.isSprinting = false;
             PlayerController.Instance.isPressingSprint = false;
         }
         else

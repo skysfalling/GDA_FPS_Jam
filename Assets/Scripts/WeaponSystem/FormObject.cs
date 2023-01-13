@@ -6,6 +6,8 @@ using NaughtyAttributes;
 
 public class FormObject : MonoBehaviour
 {
+    [Tooltip("[IMPORTANT] The weapon ID for this weapon. This should match the 'id' in the weapon_info.json file in your weapon's folder.")]
+    public string weaponID;
     [Expandable]
     [Tooltip("The primary form for this weapon. Attempts to run it's FormAction() on left click.")]
     public BaseForm primaryForm;
@@ -14,10 +16,11 @@ public class FormObject : MonoBehaviour
     public BaseForm secondaryForm;
     [Tooltip("The virtual camera that the weapon camera will swap to when the user aims down sights (right click).")]
     public CinemachineVirtualCamera ADSVirtualCamera;
+    [Tooltip("The amount of FOV added or removed when aiming down sights on this weapon.")]
+    public float ADSZoomModifier = 1;
     [Tooltip("The transform this weapon will spawn projectiles from.")]
     public Transform barrelSpawn;
-    [Tooltip("[IMPORTANT] The weapon ID for this weapon. This should match the 'id' in the weapon_info.json file in your weapon's folder.")]
-    public string weaponID;
+    
 
 
 

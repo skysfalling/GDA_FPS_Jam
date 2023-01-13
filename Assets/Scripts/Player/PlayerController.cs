@@ -98,6 +98,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         RaycastGrabbablePivot();
         ApplyGrab();
         UpdateSprintVFX();
+        UpdateADSVFX();
 
         if (isInspecting)
         {
@@ -398,7 +399,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     void UpdateSprintVFX()
     {
-        if ((isSprinting || FormController.Instance.isADS) && currentVFXState < 1)
+        if ((isSprinting) && currentVFXState < 1)
         {
             currentVFXState += Time.deltaTime * currentVFXStateRate;
         }
@@ -410,6 +411,19 @@ public class PlayerController : UnitySingleton<PlayerController>
         currentVFXState = Mathf.Clamp(currentVFXState, 0, 1);
 
         ModifyFOV(Mathf.Lerp(_FOV, _sprintFOV, currentVFXState));
+        m_Vignette.intensity.value = Mathf.Lerp(0.25f, 0.4f, currentVFXState);
+    }
+
+    void UpdateADSVFX()
+    {
+        if (FormController.Instance.isADS && currentVFXState < 1)
+        {
+            currentVFXState += Time.deltaTime * currentVFXStateRate;
+        }
+
+        currentVFXState = Mathf.Clamp(currentVFXState, 0, 1);
+
+        ModifyFOV(Mathf.Lerp(_FOV, _FOV/FormController.Instance.currentForm.ADSZoomModifier, currentVFXState));
         m_Vignette.intensity.value = Mathf.Lerp(0.25f, 0.4f, currentVFXState);
     }
 

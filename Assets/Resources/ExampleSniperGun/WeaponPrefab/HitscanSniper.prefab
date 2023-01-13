@@ -860,11 +860,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3268e580b1bb1a499459aa2549390c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponID: hitscanSniper
   primaryForm: {fileID: 11400000, guid: 2aa749160935a154d9befe1b8e8544ad, type: 2}
   secondaryForm: {fileID: 11400000, guid: 1ea44ad655a3df14eb3bc432b955cd58, type: 2}
   ADSVirtualCamera: {fileID: 1591959767614796963}
+  ADSZoomModifier: 2
   barrelSpawn: {fileID: 1361343249479498785}
-  weaponID: hitscanSniper
   _currentPrimaryCooldown: 0
   _currentSecondaryCooldown: 0
   _currentPrimaryEnergy: 0
