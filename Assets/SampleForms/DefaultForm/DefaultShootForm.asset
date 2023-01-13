@@ -25,6 +25,11 @@ MonoBehaviour:
   energyRegenRate: 0
   energyMax: 0
   energyCost: 0
+  shareEnergyWithOtherForm: 0
+  screenShakeImpulseMagnitude: 0
+  screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
+  audioClip: {fileID: 0}
+  volume: 1
   _bullet: {fileID: 3648734522970492190, guid: 60069794f9cc8084c8680891a603f67c, type: 3}
   raycastCheckLayers:
     serializedVersion: 2

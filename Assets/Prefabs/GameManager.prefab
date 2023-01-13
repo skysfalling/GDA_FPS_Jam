@@ -493,12 +493,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5342817933673353782}
     m_Modifications:
-    - target: {fileID: 7712703810783514365, guid: 3cf3052b7c46aaf49b0278628e8727d1,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e0c9f925725ed7044a71591620eec7e4,
-        type: 3}
     - target: {fileID: 9199020428688658288, guid: 3cf3052b7c46aaf49b0278628e8727d1,
         type: 3}
       propertyPath: m_Name
@@ -609,11 +603,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9199020428688658292, guid: 3cf3052b7c46aaf49b0278628e8727d1,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cf3052b7c46aaf49b0278628e8727d1, type: 3}
 --- !u!224 &4354949263014802819 stripped
@@ -694,6 +683,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8046563423640016993, guid: b325a024e0e4266408904aaf41e0a2bc,
+        type: 3}
+      propertyPath: secondaryForm
+      value: 
+      objectReference: {fileID: 11400000, guid: 33b6a8e6f84e7b74da4292999db78400,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b325a024e0e4266408904aaf41e0a2bc, type: 3}
 --- !u!20 &1574330968 stripped

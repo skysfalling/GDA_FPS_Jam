@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using NaughtyAttributes;
 
 public class FormObject : MonoBehaviour
 {
-
+    [Expandable]
     public BaseForm primaryForm;
+    [Expandable]
     public BaseForm secondaryForm;
     public CinemachineVirtualCamera ADSVirtualCamera;
     public Transform barrelSpawn;

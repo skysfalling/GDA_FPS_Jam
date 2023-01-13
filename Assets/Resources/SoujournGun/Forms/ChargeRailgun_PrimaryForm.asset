@@ -20,12 +20,13 @@ MonoBehaviour:
   actionCooldown: 0.071
   maxHoldDuration: 0
   energyType: 1
-  energyRegenType: 1
-  energyRegenCooldown: 2
+  energyRegenType: 3
+  energyRegenCooldown: 1.5
   energyRegenRate: 60
   energyMax: 45
   energyCost: 1
   shareEnergyWithOtherForm: 0
+  autoReloadOnEmpty: 0
   screenShakeImpulseMagnitude: 0.01
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
   audioClip: {fileID: 8300000, guid: a75ee02efd38fa3459a41edc52fc13f6, type: 3}

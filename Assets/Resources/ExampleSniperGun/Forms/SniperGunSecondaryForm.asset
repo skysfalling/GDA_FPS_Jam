@@ -21,13 +21,16 @@ MonoBehaviour:
   maxHoldDuration: 0
   energyType: 1
   energyRegenType: 1
-  energyRegenCooldown: 2
+  energyRegenCooldown: 1
   energyRegenRate: 50
   energyMax: 60
   energyCost: 1
   shareEnergyWithOtherForm: 0
+  autoReloadOnEmpty: 0
   screenShakeImpulseMagnitude: 0.01
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
+  audioClip: {fileID: 0}
+  volume: 1
   _bullet: {fileID: 3648734522970492190, guid: da7733cbac6efab47bba3356a98bb6a9, type: 3}
   raycastCheckLayers:
     serializedVersion: 2

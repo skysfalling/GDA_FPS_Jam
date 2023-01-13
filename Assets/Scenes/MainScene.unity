@@ -694,7 +694,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29500
+  m_Name: pb_Mesh29544
   serializedVersion: 10
   m_SubMeshes: []
   m_Shapes:
@@ -1961,92 +1961,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 330585545, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: field of view
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 330585546, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 330585546, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.732
-      objectReference: {fileID: 0}
-    - target: {fileID: 330585546, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 330585549, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: weight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 330585549, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1225920276, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 704d2b208d496294a954366b4dfb948d,
-        type: 3}
-    - target: {fileID: 1225920276, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1225920276, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1225920276, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1225920276, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574330968, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: field of view
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574330968, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: far clip plane
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574330968, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574330969, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574330969, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.14499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574330969, guid: 369a052995bb66e41965ef19bd68920c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.33500004
-      objectReference: {fileID: 0}
-    - target: {fileID: 2940736551243068429, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e0c9f925725ed7044a71591620eec7e4,
-        type: 3}
-    - target: {fileID: 4354949260950743939, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: secondaryForm
-      value: 
-      objectReference: {fileID: 11400000, guid: 33b6a8e6f84e7b74da4292999db78400,
-        type: 2}
-    - target: {fileID: 4764210616568506017, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: interactableLayers.m_Bits
-      value: 1527
-      objectReference: {fileID: 0}
     - target: {fileID: 5342817933673353782, guid: 369a052995bb66e41965ef19bd68920c,
         type: 3}
       propertyPath: m_RootOrder
@@ -2106,41 +2020,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6036162202352874248, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 6284616095368002442, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.083
-      objectReference: {fileID: 0}
-    - target: {fileID: 6284616095368002442, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.625
-      objectReference: {fileID: 0}
-    - target: {fileID: 6284616095368002442, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.468
-      objectReference: {fileID: 0}
-    - target: {fileID: 7788489994260891081, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7788489994260891081, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7788489994260891081, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 369a052995bb66e41965ef19bd68920c, type: 3}

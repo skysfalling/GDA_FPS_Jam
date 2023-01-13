@@ -12,6 +12,7 @@ public class FormController : UnitySingleton<FormController>
     public Transform spawnPivot;
     [SerializeField] private GameObject _formParent;
     public Transform ADSPosition;
+    public ReloadFlairController reloadFlairController;
 
     [Header("Overall Status")]
     public bool _isReloading = false;
@@ -304,9 +305,16 @@ public class FormController : UnitySingleton<FormController>
     {
         _isReloading = true;
 
+        float initialReloadTime = reloadTime;
+
         //add reload anim code here
 
-        yield return new WaitForSeconds(reloadTime);
+        while(reloadTime > 0)
+        {
+            reloadTime -= Time.deltaTime;
+            reloadFlairController.SetReloadPercentage(reloadTime / initialReloadTime);
+            yield return null;
+        }
 
         OnManualReloadComplete();
 
@@ -326,6 +334,7 @@ public class FormController : UnitySingleton<FormController>
             currentForm._currentSecondaryEnergy = currentForm.secondaryForm.energyMax;
         }
 
+        reloadFlairController.SetReloadPercentage(0);
         WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(currentForm);
 
     }

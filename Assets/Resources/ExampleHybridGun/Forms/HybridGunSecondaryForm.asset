@@ -19,13 +19,16 @@ MonoBehaviour:
   firingType: 0
   actionCooldown: 0.1
   maxHoldDuration: 0
-  energyType: 0
+  energyType: 1
   energyRegenType: 0
   energyRegenCooldown: 0
   energyRegenRate: 0
   energyMax: 0
   energyCost: 0
   shareEnergyWithOtherForm: 0
+  autoReloadOnEmpty: 0
   screenShakeImpulseMagnitude: 0.01
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
+  audioClip: {fileID: 0}
+  volume: 1
   _bullet: {fileID: 3648734522970492190, guid: 6b6b894e73f75f342aab9797dd4c815f, type: 3}
