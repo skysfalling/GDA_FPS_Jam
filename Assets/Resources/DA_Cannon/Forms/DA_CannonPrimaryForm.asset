@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fb4ed66f7758af4088ef1d9dc62977a, type: 3}
-  m_Name: DA_TestRPGPrimaryForm
+  m_Name: DA_CannonPrimaryForm
   m_EditorClassIdentifier: 
   id: default_shoot
   description: Default auto-shoot. Hold to shoot
