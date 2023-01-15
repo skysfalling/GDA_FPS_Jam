@@ -111,6 +111,16 @@ public abstract class BaseForm : ScriptableObject
             
     }
 
+    public virtual Transform GetBarrelTransform()
+    {
+        return FormController.Instance.currentForm.barrelSpawn;
+    }
+
+    public virtual FormObject GetCurrentFormObject()
+    {
+        return FormController.Instance.currentForm;
+    }
+
 
 
 }

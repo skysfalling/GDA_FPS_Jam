@@ -14,7 +14,7 @@ public class PlayerController : UnitySingleton<PlayerController>
     [SerializeField] private CinemachineVirtualCamera _vcam;
     [SerializeField] private Volume m_Volume;
     private Vignette m_Vignette;
-    
+
 
     [Header("Current Player State")]
     public Vector3 moveDirection;
@@ -29,20 +29,46 @@ public class PlayerController : UnitySingleton<PlayerController>
     public float scrollModifier;
     public bool canControlMovement = true;
 
+    [HideInInspector]
     [Header("Interaction System")]
     [SerializeField] private Transform _grabPivot;
+    [HideInInspector]
     public Grabbable currentGrabbable;
+    [HideInInspector]
     public float grabbableForce;
+    [HideInInspector]
     public float baseInteractableDistance;
+    [HideInInspector]
     public float maxInteractableDistance;
+    [HideInInspector]
     public float minInteractableDistance;
+    [HideInInspector]
     public float interactableDistanceChangeRate;
+    [HideInInspector]
     public float interactableDistance;
+    [HideInInspector]
     public LayerMask interactableLayers;
+    [HideInInspector]
     public float inspectMinimumSensitivity;
 
+    [System.Serializable]
+    public struct PlayerStats
+    {
+        public float maximumInputSpeed;
+        public float sprintModifier;
+        public float ADSModifier;
+        public float movementAcceleration;
+        public float movementDrag;
+        public float gravity;
+        public float jumpForce;
+    }
 
-    [Header("Base Movement Stats [Reset on Play]")]
+    [Header("Base Movement Stats")]
+
+    public PlayerStats basePlayerStats;
+
+    [Header("Current Movement Stats [Reset to Base on Play or Swap Weapons]")]
+
     [SerializeField] private float _maximumInputSpeed;
     private float _currentMaximumInputSpeed;
     [SerializeField] private float _sprintModifier;
@@ -51,14 +77,13 @@ public class PlayerController : UnitySingleton<PlayerController>
     [SerializeField] private float _movementDrag;
     [SerializeField] private float _gravity;
     [SerializeField] private float _jumpForce;
-    
-    [SerializeField] private float _lookSensitivity = 1.0f;
 
     [Header("UI/Camera Related Stats")]
     [SerializeField] private float _FOV;
     [SerializeField] private float _sprintFOV;
-    private float currentVFXState;
-    private float targetFOV = 90;
+    [SerializeField] private float _lookSensitivity = 1.0f;
+    [SerializeField] private float currentVFXState;
+    [SerializeField] private float targetFOV = 90;
     [SerializeField] private float currentVFXStateRate;
 
     public override void Awake()
@@ -81,6 +106,22 @@ public class PlayerController : UnitySingleton<PlayerController>
         ModifyFOV(_FOV);
     }
 
+    public void ReplacePlayerStats(PlayerStats newPlayerStats)
+    {
+        _maximumInputSpeed = newPlayerStats.maximumInputSpeed;
+        _sprintModifier = newPlayerStats.sprintModifier;
+        _ADSModifier = newPlayerStats.ADSModifier;
+        _movementAcceleration = newPlayerStats.movementAcceleration;
+        _movementDrag = newPlayerStats.movementDrag;
+        _gravity = newPlayerStats.gravity;
+        _jumpForce = newPlayerStats.jumpForce;
+    }
+
+    public void ResetBasePlayerStats()
+    {
+        ReplacePlayerStats(basePlayerStats);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,7 +135,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         {
             return;
         }
-        
+
         LimitMovement();
         RaycastGrabbablePivot();
         ApplyGrab();
@@ -146,12 +187,13 @@ public class PlayerController : UnitySingleton<PlayerController>
         transform.Rotate(Vector3.up * lookX);
         _playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        
+
     }
 
     private void ApplyInspect()
     {
-        if(currentGrabbable == null) {
+        if (currentGrabbable == null)
+        {
             return;
         }
 
@@ -169,7 +211,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         {
             lookY = looking.y * _lookSensitivity * Time.deltaTime;
         }
-        
+
 
         currentGrabbable.transform.Rotate((Vector3.up * lookX) + (Camera.main.transform.right * lookY), Space.World);
 
@@ -212,7 +254,7 @@ public class PlayerController : UnitySingleton<PlayerController>
     public void Look(InputAction.CallbackContext context)
     {
         lookDirection = context.ReadValue<Vector2>();
-        
+
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -232,7 +274,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         RaycastHit info;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out info, 2, interactableLayers))
         {
-            if(LayerMask.LayerToName(info.transform.gameObject.layer) == "Interactable" || LayerMask.LayerToName(info.transform.gameObject.layer) == "InteractableNoPlayerCollide")
+            if (LayerMask.LayerToName(info.transform.gameObject.layer) == "Interactable" || LayerMask.LayerToName(info.transform.gameObject.layer) == "InteractableNoPlayerCollide")
             {
                 info.transform.GetComponent<Interactable>().InteractAction();
             }
@@ -242,7 +284,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     void ApplyGrab()
     {
-        if(currentGrabbable != null)
+        if (currentGrabbable != null)
         {
             float grabbableOffset = Vector3.Distance(currentGrabbable.transform.position, _grabPivot.transform.position);
             Vector3 forceDirection = (_grabPivot.position - currentGrabbable.transform.position).normalized * grabbableForce * grabbableOffset;
@@ -256,7 +298,7 @@ public class PlayerController : UnitySingleton<PlayerController>
                     currentGrabbable.transform.SetParent(_grabPivot);
                 }
             }
-            
+
         }
     }
 
@@ -276,7 +318,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         float offset = interactableDistance;
 
-        if(currentGrabbable != null)
+        if (currentGrabbable != null)
         {
             offset += currentGrabbable.offset;
         }
@@ -289,7 +331,7 @@ public class PlayerController : UnitySingleton<PlayerController>
             {
                 newDistance -= currentGrabbable.offset;
             }
-             
+
 
             _grabPivot.position = ray.GetPoint(newDistance);
         }
@@ -330,7 +372,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         {
             return;
         }
-            if (context.started)
+        if (context.started)
         {
             isInspecting = true;
 
@@ -344,9 +386,9 @@ public class PlayerController : UnitySingleton<PlayerController>
     public void OnScroll(InputAction.CallbackContext context)
     {
         scrollDirection = context.ReadValue<float>();
-            interactableDistance += interactableDistanceChangeRate * scrollDirection;
+        interactableDistance += interactableDistanceChangeRate * scrollDirection;
 
-            interactableDistance = Mathf.Clamp(interactableDistance, minInteractableDistance, maxInteractableDistance);
+        interactableDistance = Mathf.Clamp(interactableDistance, minInteractableDistance, maxInteractableDistance);
 
 
     }
@@ -403,7 +445,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         {
             currentVFXState += Time.deltaTime * currentVFXStateRate;
         }
-        else if(currentVFXState > 0 && !(isSprinting || FormController.Instance.isADS))
+        else if (currentVFXState > 0 && !(isSprinting || FormController.Instance.isADS))
         {
             currentVFXState -= Time.deltaTime * currentVFXStateRate;
         }
@@ -416,9 +458,9 @@ public class PlayerController : UnitySingleton<PlayerController>
         }
         else if (FormController.Instance.isADS)
         {
-            if(targetFOV == _sprintFOV)
+            if (targetFOV == _sprintFOV)
             {
-                currentVFXState = (_FOV / FormController.Instance.currentForm.ADSZoomModifier) /(currentVFXState * _sprintFOV);
+                currentVFXState = (_FOV / FormController.Instance.currentForm.ADSZoomModifier) / (currentVFXState * _sprintFOV);
             }
 
             targetFOV = _FOV / FormController.Instance.currentForm.ADSZoomModifier;

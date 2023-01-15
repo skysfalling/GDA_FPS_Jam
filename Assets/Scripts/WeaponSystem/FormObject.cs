@@ -190,6 +190,7 @@ public class FormObject : MonoBehaviour
                 else
                 {
                     _currentPrimaryEnergy -= secondaryForm.energyCost;
+                    WeaponPanelUIController.Instance.UpdateCurrentWeaponAmmoUI(this);
 
                     if (primaryForm.energyRegenType == BaseForm.EnergyRegenerationType.EmptyFullFill)
                     {

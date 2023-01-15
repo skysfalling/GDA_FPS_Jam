@@ -1,0 +1,6 @@
+{
+  "id": "edgegun",
+  "weaponPrefabPath": "EdgeCaseGun/WeaponPrefab/EdgeGun",
+  "meshPath": "EdgeCaseGun/Models/testGunModel",
+  "displayName": "Edge-Case Gun"
+}

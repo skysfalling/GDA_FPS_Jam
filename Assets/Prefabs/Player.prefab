@@ -125,7 +125,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7779887, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -561,6 +561,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1527
   inspectMinimumSensitivity: 1
+  basePlayerStats:
+    maximumInputSpeed: 6.5
+    sprintModifier: 1.5
+    ADSModifier: 0.6
+    movementAcceleration: 50
+    movementDrag: 5
+    gravity: 35
+    jumpForce: 15
   _maximumInputSpeed: 6.5
   _sprintModifier: 1.5
   _ADSModifier: 0.6
@@ -591,6 +599,8 @@ MonoBehaviour:
   spawnPivot: {fileID: 5578946021655911170}
   _formParent: {fileID: 6036162203289680230}
   ADSPosition: {fileID: 14632860}
+  reloadFlairController: {fileID: 0}
+  _isReloading: 0
   _currentPrimaryIsPressed: 0
   _currentPrimaryIsReady: 1
   _currentPrimaryHoldDuration: 0
@@ -673,7 +683,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7779887, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

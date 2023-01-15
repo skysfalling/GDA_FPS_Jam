@@ -7,27 +7,20 @@ public class BaseHitscan : MonoBehaviour
     public float damage = 1.0f;
     public float lifespan = 0.5f;
 
-    [SerializeField] private float hipSpread;
-    [SerializeField] private float ADSspread;
+    [SerializeField] protected float hipSpread;
+    [SerializeField] protected float ADSspread;
 
     public RaycastHit hitInfo;
     public Vector3 targetPosition;
     public bool hasRaycastHit;
     public LineRenderer lineRenderer;
-    [SerializeField] private LayerMask raycastCheckLayers;
+    [SerializeField] protected LayerMask raycastCheckLayers;
 
     public virtual void Start()
     {
         Destroy(gameObject, lifespan);
 
-        if (!FormController.Instance.isADS)
-        {
-            transform.forward += new Vector3(Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread));
-        }
-        else
-        {
-            transform.forward += new Vector3(Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread));
-        }
+        ApplyRandomSpread();
 
         if (Physics.Raycast(Camera.main.transform.position, transform.forward, out hitInfo, 200.0f, raycastCheckLayers))
         {
@@ -48,6 +41,24 @@ public class BaseHitscan : MonoBehaviour
             return;
         }
 
+        ProcessDamage();
+
+    }
+
+    public virtual void ApplyRandomSpread()
+    {
+        if (!FormController.Instance.isADS)
+        {
+            transform.forward += new Vector3(Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread), Random.Range(-hipSpread, hipSpread));
+        }
+        else
+        {
+            transform.forward += new Vector3(Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread), Random.Range(-ADSspread, ADSspread));
+        }
+    }
+
+    public virtual void ProcessDamage()
+    {
         Damageable damageable = hitInfo.transform.gameObject.GetComponent<Damageable>();
 
         // Check if target is a Damageable
@@ -65,22 +76,21 @@ public class BaseHitscan : MonoBehaviour
             // If it does, damage the target
             hitable.ProcessHit();
         }
-
     }
 
-    public void SetHitInfo(RaycastHit info)
+    public virtual void SetHitInfo(RaycastHit info)
     {
         hitInfo = info;
         targetPosition = hitInfo.point;
         hasRaycastHit = true;
     }
 
-    public void SetTargetPosition(Vector3 pos)
+    public virtual void SetTargetPosition(Vector3 pos)
     {
         targetPosition = pos;
     }
 
-    public void SetTargetDirection(Vector3 dir)
+    public virtual void SetTargetDirection(Vector3 dir)
     {
         transform.forward = dir;
     }

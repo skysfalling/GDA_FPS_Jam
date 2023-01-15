@@ -10,14 +10,14 @@ using UnityEngine;
  */
 public class BaseBullet : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] protected Rigidbody _rigidbody;
 
     public float damage = 1.0f;
     public float speed = 1.0f;
     public float lifespan = 6.0f;
 
-    [SerializeField] private float hipSpread;
-    [SerializeField] private float ADSspread;
+    [SerializeField] protected float hipSpread;
+    [SerializeField] protected float ADSspread;
 
     public Vector3 targetPosition;
     public bool hasTargetPosition;
@@ -62,13 +62,13 @@ public class BaseBullet : MonoBehaviour
     }
 
     //Set target position for this bullet;
-    public void SetTargetPosition(Vector3 position)
+    public virtual void SetTargetPosition(Vector3 position)
     {
         targetPosition = position;
         hasTargetPosition = true;
     }
 
-    public void SetDirection(Vector3 direction)
+    public virtual void SetDirection(Vector3 direction)
     {
         transform.forward = direction;
     }

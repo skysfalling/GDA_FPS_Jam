@@ -9,11 +9,10 @@ public class ChargeRailgunPrimaryForm : DefaultShootForm
     //FormAction() is called each time the form "shoots".
     public override void FormAction(float context)
     {
-        
 
         //Spawn bullet prefab at weapon's barrel position
-        var bullet = Instantiate(_bullet, FormController.Instance.currentForm.barrelSpawn.position, Quaternion.identity);
-        bullet.transform.GetComponent<ChargeRailgunBaseBullet>().hostForm = FormController.Instance.currentForm;
+        var bullet = Instantiate(_bullet, GetBarrelTransform().position, Quaternion.identity);
+        bullet.transform.GetComponent<ChargeRailgunBaseBullet>().hostForm = GetCurrentFormObject();
         SpawnedGarbageController.Instance.AddAsChild(bullet);
         RaycastHit info;
 

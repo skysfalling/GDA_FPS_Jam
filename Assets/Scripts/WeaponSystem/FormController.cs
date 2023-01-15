@@ -55,6 +55,7 @@ public class FormController : UnitySingleton<FormController>
     public void SetNewWeapon(GameObject newWeapon)
     {
         ClearCurrentWeapon();
+        PlayerController.Instance.ResetBasePlayerStats();
         var newGun = Instantiate(newWeapon, _formParent.transform);
         newGun.transform.localPosition = Vector3.zero;
         FormObject newForm = newGun.transform.GetComponent<FormObject>();
