@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb4ed66f7758af4088ef1d9dc62977a, type: 3}
+  m_Name: DA_TestRPGPrimaryForm
+  m_EditorClassIdentifier: 
+  id: default_shoot
+  description: Default auto-shoot. Hold to shoot
+  icon: {fileID: 0}
+  pivot: {fileID: 0}
+  firingType: 0
+  actionCooldown: 0.1
+  maxHoldDuration: 0
+  energyType: 1
+  energyRegenType: 3
+  energyRegenCooldown: 1
+  energyRegenRate: 0
+  energyMax: 1
+  energyCost: 1
+  shareEnergyWithOtherForm: 0
+  autoReloadOnEmpty: 1
+  screenShakeImpulseMagnitude: 100
+  screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
+  audioClip: {fileID: 8300000, guid: dd6ebad72ed11ae4e9ee6ef771b636c2, type: 3}
+  volume: 5
+  _bullet: {fileID: 3648734522970492190, guid: 5310ee0a9e487354fa2d772b0df574d1, type: 3}
+  raycastCheckLayers:
+    serializedVersion: 2
+    m_Bits: 129

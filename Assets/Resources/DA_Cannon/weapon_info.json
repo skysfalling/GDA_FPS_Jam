@@ -1,0 +1,6 @@
+{
+  "id": "DylanAthena Cannon",
+  "weaponPrefabPath": "DA_Cannon/WeaponPrefab/Cannon",
+  "meshPath": "DA_Cannon/Models/testGunModel",
+  "displayName": "Cannon"
+}
