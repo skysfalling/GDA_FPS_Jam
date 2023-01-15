@@ -31,12 +31,19 @@ public class FormController : UnitySingleton<FormController>
     [Header("ADS Status")]
     public bool isADS;
 
+    // Animation
+    private Animator AnimController;
+    private bool FiredGun;
+
     // Start is called before the first frame update
     void Start()
     {
         GrabForms();
         SetForm(0);
         ResetController();
+
+        // Set Animation
+        AnimController = _formParent.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -60,6 +67,9 @@ public class FormController : UnitySingleton<FormController>
         FormObject newForm = newGun.transform.GetComponent<FormObject>();
         currentForm = newForm;
         WeaponPanelUIController.Instance.InitializeNewWeapon(newForm);
+
+        // Set Animation
+        AnimController = _formParent.GetComponentInChildren<Animator>();
     }
 
     public void ClearCurrentWeapon()
@@ -119,9 +129,18 @@ public class FormController : UnitySingleton<FormController>
             return;
         }
 
+        FiredGun = false;
+
         CheckPrimaryActions();
         CheckSecondaryActions();
 
+        if(FiredGun == false)
+        {
+            if (AnimController)
+            {
+                AnimController.SetBool("Fire", false);
+            }
+        }
     }
 
     void CheckPrimaryActions()
@@ -130,6 +149,8 @@ public class FormController : UnitySingleton<FormController>
         {
             return;
         }
+
+        FiredGun = true;
 
         if (currentForm.primaryForm.firingType == BaseForm.FireType.Auto)
         {
@@ -158,6 +179,8 @@ public class FormController : UnitySingleton<FormController>
         {
             return;
         }
+
+        FiredGun = true;
 
         if (currentForm.secondaryForm.firingType == BaseForm.FireType.Auto)
         {
@@ -208,6 +231,12 @@ public class FormController : UnitySingleton<FormController>
         }
 
         _currentPrimaryIsPressed = context.ReadValueAsButton();
+
+        // Animation
+        if (AnimController)
+        {
+            AnimController.SetBool("Fire",true);
+        }
     }
 
     public void AltFire(InputAction.CallbackContext context)
@@ -300,6 +329,14 @@ public class FormController : UnitySingleton<FormController>
             StartCoroutine(ReloadRoutine(currentForm.secondaryForm.energyRegenCooldown));
         }
 
+        if (AnimController != null)
+        {
+            AnimController.SetTrigger("Reload");
+        }
+        else
+        {
+            Debug.Log("No Animation Controller Found");
+        }
     }
 
     IEnumerator ReloadRoutine(float reloadTime)
