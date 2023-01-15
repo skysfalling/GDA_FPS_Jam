@@ -1,0 +1,6 @@
+{
+  "id": "basic",
+  "weaponPrefabPath": "ExampleAnimatedWeapon/WeaponPrefab/TestGun",
+  "meshPath": "ExampleAnimatedWeapon/Models/fpsgun",
+  "displayName": "Test Hybrid Gun"
+}

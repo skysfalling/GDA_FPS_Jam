@@ -156,16 +156,16 @@ public class FormController : UnitySingleton<FormController>
             return;
         }
 
-        FiredGun = true;
+        FiredGun = false;
 
         if (currentForm.primaryForm.firingType == BaseForm.FireType.Auto)
         {
-            currentForm.UsePrimaryAction(-1);
+             FiredGun = currentForm.UsePrimaryAction(-1);
         }
         else if (currentForm.primaryForm.firingType == BaseForm.FireType.Semi && _currentPrimaryIsReady)
         {
             _currentPrimaryIsReady = false;
-            currentForm.UsePrimaryAction(-1);
+            FiredGun = currentForm.UsePrimaryAction(-1);
         }
         else if (currentForm.primaryForm.firingType == BaseForm.FireType.Hold)
         {
@@ -186,16 +186,16 @@ public class FormController : UnitySingleton<FormController>
             return;
         }
 
-        FiredGun = true;
+        FiredGun = false;
 
         if (currentForm.secondaryForm.firingType == BaseForm.FireType.Auto)
         {
-            currentForm.UseSecondaryAction(-1);
+            FiredGun = currentForm.UseSecondaryAction(-1);
         }
         else if (currentForm.secondaryForm.firingType == BaseForm.FireType.Semi && _currentSecondaryIsReady)
         {
             _currentSecondaryIsReady = false;
-            currentForm.UseSecondaryAction(-1);
+            FiredGun = currentForm.UseSecondaryAction(-1);
         }
         else if (currentForm.secondaryForm.firingType == BaseForm.FireType.Hold)
         {
@@ -231,7 +231,7 @@ public class FormController : UnitySingleton<FormController>
         {
             if (currentForm.primaryForm.firingType == BaseForm.FireType.Hold && currentForm._currentPrimaryCooldown <= 0)
             {
-                currentForm.UsePrimaryAction(_currentPrimaryHoldDuration);
+                FiredGun = currentForm.UsePrimaryAction(_currentPrimaryHoldDuration);
                 _currentPrimaryHoldDuration = 0;
             }
         }
@@ -261,12 +261,18 @@ public class FormController : UnitySingleton<FormController>
         {
             if (currentForm.secondaryForm.firingType == BaseForm.FireType.Hold && currentForm._currentSecondaryCooldown <= 0)
             {
-                currentForm.UseSecondaryAction(_currentSecondaryHoldDuration);
+                FiredGun = currentForm.UseSecondaryAction(_currentSecondaryHoldDuration);
                 _currentSecondaryHoldDuration = 0;
             }
         }
 
         _currentSecondaryIsPressed = context.ReadValueAsButton();
+
+        // Animation
+        if (AnimController)
+        {
+            AnimController.SetBool("Fire", true);
+        }
     }
 
     public void AimDownSights(InputAction.CallbackContext context)

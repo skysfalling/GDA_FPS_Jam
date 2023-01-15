@@ -280,16 +280,16 @@ public class FormObject : MonoBehaviour
         yield return new WaitForSeconds(1);
     }
 
-    public void UsePrimaryAction(float context)
+    public bool UsePrimaryAction(float context)
     {
         if(primaryForm == null)
         {
-            return;
+            return false;
         }
 
         if (_currentPrimaryCooldown > 0 || !CheckValidEnergy(0))
         {
-            return;
+            return false;
         }
 
         if (primaryForm.firingType == BaseForm.FireType.Auto)
@@ -310,23 +310,25 @@ public class FormObject : MonoBehaviour
 
         }
 
+
         GeneratePrimaryImpulse();
 
+        return true;
 
     }
 
-    
 
-    public void UseSecondaryAction(float context)
+
+    public bool UseSecondaryAction(float context)
     {
         if(secondaryForm == null)
         {
-            return;
+            return false;
         }
 
         if (_currentSecondaryCooldown > 0 || !CheckValidEnergy(1))
         {
-            return;
+            return false;
         }
 
         if (secondaryForm.firingType == BaseForm.FireType.Auto)
@@ -346,6 +348,8 @@ public class FormObject : MonoBehaviour
         }
 
         GenerateSecondaryImpulse();
+
+        return true;
     }
 
     void GeneratePrimaryImpulse()

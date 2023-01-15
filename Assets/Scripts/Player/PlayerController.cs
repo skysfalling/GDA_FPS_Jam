@@ -104,11 +104,13 @@ public class PlayerController : UnitySingleton<PlayerController>
         m_Volume.profile.TryGet<Vignette>(out m_Vignette);
     }
 
+    //Modify the current FOV of the player camera
     public void ModifyFOV(float fov)
     {
         _vcam.m_Lens.FieldOfView = fov;
     }
 
+    //Updates the base FOV of the player
     public void UpdateBaseFOV(float newFOV)
     {
         _FOV = newFOV;
@@ -116,6 +118,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         ModifyFOV(_FOV);
     }
 
+    //Replace the players stats with a new set of player stats.
     public void ReplacePlayerStats(PlayerStats newPlayerStats)
     {
         _maximumInputSpeed = newPlayerStats.maximumInputSpeed;
@@ -127,6 +130,7 @@ public class PlayerController : UnitySingleton<PlayerController>
         _jumpForce = newPlayerStats.jumpForce;
     }
 
+    //Resets the players stats to the base values
     public void ResetBasePlayerStats()
     {
         ReplacePlayerStats(basePlayerStats);
@@ -448,7 +452,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     }
 
-
+    //kinda gross but dw about it
     void UpdateSprintVFX()
     {
         if ((isSprinting || FormController.Instance.isADS) && currentVFXState < 1)
