@@ -9,7 +9,7 @@ using Cinemachine;
 public class PlayerController : UnitySingleton<PlayerController>
 {
     [Header("Serialized Variables")]
-    [SerializeField] private Rigidbody _rigidbody;
+    public Rigidbody _rigidbody;
     public Transform _playerCamera;
     [SerializeField] private CinemachineVirtualCamera _vcam;
     [SerializeField] private Volume m_Volume;
