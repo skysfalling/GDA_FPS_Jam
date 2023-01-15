@@ -7,16 +7,20 @@ public class FormController : UnitySingleton<FormController>
 {
 
     public FormObject currentForm;
+    [HideInInspector]
     public int currentFormIndex = 0;
+    [HideInInspector]
     public List<FormObject> formList;
+    [HideInInspector]
     public Transform spawnPivot;
     [SerializeField] private GameObject _formParent;
+    [HideInInspector]
     public Transform ADSPosition;
+    [HideInInspector]
     public ReloadFlairController reloadFlairController;
 
     [Header("Overall Status")]
     public bool _isReloading = false;
-
 
     [Header("Primary Status")]
     public bool _currentPrimaryIsPressed = false;
@@ -31,6 +35,7 @@ public class FormController : UnitySingleton<FormController>
     [Header("ADS Status")]
     public bool isADS;
 
+    [Header("Animation")]
     // Animation
     private Animator AnimController;
     private bool FiredGun;

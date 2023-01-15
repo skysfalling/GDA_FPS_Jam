@@ -425,6 +425,17 @@
                 },
                 {
                     "name": "",
+                    "id": "2818f097-e4a8-4802-bed2-e2a7f6a17a19",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AltFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "381e5c09-93f2-4a69-8e3f-b3e9a062192e",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",

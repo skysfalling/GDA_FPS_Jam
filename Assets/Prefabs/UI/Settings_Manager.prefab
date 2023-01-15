@@ -46,8 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Volume: 0.5
   FOV: 90
+  Sensitvity: 2
   player: {fileID: 0}
   settingsUICanvas: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 2f31e7912df438a43a895171a4e64115, type: 2}
   volumeSlider: {fileID: 0}
   fovSlider: {fileID: 0}
+  sensitivitySlider: {fileID: 0}

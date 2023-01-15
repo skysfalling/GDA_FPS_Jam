@@ -68,20 +68,30 @@ public class PlayerController : UnitySingleton<PlayerController>
     public PlayerStats basePlayerStats;
 
     [Header("Current Movement Stats [Reset to Base on Play or Swap Weapons]")]
-
+    [Tooltip("Maximum speed of the player (minus falling).")]
     [SerializeField] private float _maximumInputSpeed;
     private float _currentMaximumInputSpeed;
+    [Tooltip("Scalar modifier to movement speed while sprinting.")]
     [SerializeField] private float _sprintModifier;
+    [Tooltip("Scalar modifier to movement speed while aiming down sights.")]
     [SerializeField] private float _ADSModifier;
+    [Tooltip("Movement acceleration of the player.")]
     [SerializeField] private float _movementAcceleration;
+    [Tooltip("Movement drag of the player.")]
     [SerializeField] private float _movementDrag;
+    [Tooltip("Force of gravity of the player.")]
     [SerializeField] private float _gravity;
+    [Tooltip("Amount of jump force the player has.")]
     [SerializeField] private float _jumpForce;
 
     [Header("UI/Camera Related Stats")]
+    [Tooltip("Field of view of the player.")]
     [SerializeField] private float _FOV;
+    [Tooltip("Field of view while the player is sprinting.")]
     [SerializeField] private float _sprintFOV;
+    [Tooltip("Sensitivity of the player cursor.")]
     [SerializeField] private float _lookSensitivity = 1.0f;
+    [Tooltip("Current state (0-1) of the VFX.")]
     [SerializeField] private float currentVFXState;
     [SerializeField] private float targetFOV = 90;
     [SerializeField] private float currentVFXStateRate;

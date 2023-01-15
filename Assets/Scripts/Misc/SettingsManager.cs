@@ -12,6 +12,7 @@ public class SettingsManager : MonoBehaviour
     // Settings
     public float Volume;
     public float FOV;
+    public float Sensitivity;
 
     // Trackers
     bool settingsOpen = false;
@@ -23,15 +24,18 @@ public class SettingsManager : MonoBehaviour
     public AudioMixer audioMixer;
     public GameObject volumeSlider;
     public GameObject fovSlider;
+    public GameObject sensitivitySlider;
 
     TextMeshProUGUI volumeText;
     TextMeshProUGUI fovText;
+    TextMeshProUGUI sensitivityText;
 
     private void Start()
     {
         settingsUICanvas.SetActive(false);
         volumeText = volumeSlider.GetComponent<TextMeshProUGUI>();
         fovText = fovSlider.GetComponent<TextMeshProUGUI>();
+        sensitivityText = sensitivitySlider.GetComponent<TextMeshProUGUI>();
 
         // Set default Volume
         audioMixer.SetFloat("MasterVolume", (Mathf.Log10(Volume)*20));
@@ -41,6 +45,10 @@ public class SettingsManager : MonoBehaviour
         // Set default FOV
         fovText.text = FOV.ToString("0");
         fovSlider.GetComponent<Slider>().value = FOV;
+
+        // Set default sensitivity
+        sensitivityText.text = Sensitivity.ToString("0");
+        sensitivitySlider.GetComponent<Slider>().value = Sensitivity;
     }
 
     private void Update()
@@ -83,5 +91,13 @@ public class SettingsManager : MonoBehaviour
         this.FOV = FOV;
         fovText.text = FOV.ToString("0");
         PlayerController.Instance.UpdateBaseFOV(this.FOV);
+    }
+
+    public void SetSensitivity(float sensitivity)
+    {
+        this.Sensitivity = sensitivity;
+        sensitivityText.text = sensitivity.ToString("0");
+        PlayerController.Instance.SetSensitivity((this.Sensitivity/5)*2);
+
     }
 }
