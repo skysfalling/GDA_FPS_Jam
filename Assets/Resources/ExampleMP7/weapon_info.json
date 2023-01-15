@@ -2,5 +2,5 @@
   "id": "basic",
   "weaponPrefabPath": "ExampleMP7/WeaponPrefab/TestGun",
   "meshPath": "ExampleMP7/Models/fpsgun",
-  "displayName": "Test MP7"
+  "displayName": "Test Hybrid Gun"
 }
