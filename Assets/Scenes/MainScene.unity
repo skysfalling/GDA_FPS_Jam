@@ -2237,25 +2237,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4764210616568506017, guid: 369a052995bb66e41965ef19bd68920c,
+    - target: {fileID: 4764210615729890957, guid: 369a052995bb66e41965ef19bd68920c,
         type: 3}
-      propertyPath: isGrounded
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4764210616568506017, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: isInspecting
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4764210616568506017, guid: 369a052995bb66e41965ef19bd68920c,
-        type: 3}
-      propertyPath: canControlMovement
-      value: 1
+      propertyPath: m_Lens.FieldOfView
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4764210616568506017, guid: 369a052995bb66e41965ef19bd68920c,
         type: 3}
       propertyPath: interactableLayers.m_Bits
       value: 1527
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764210616568506017, guid: 369a052995bb66e41965ef19bd68920c,
+        type: 3}
+      propertyPath: basePlayerStats.maximumInputSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5342817933673353782, guid: 369a052995bb66e41965ef19bd68920c,
         type: 3}

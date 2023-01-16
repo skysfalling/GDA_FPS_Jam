@@ -69,7 +69,7 @@ public class PlayerController : UnitySingleton<PlayerController>
 
     [Header("Current Movement Stats [Reset to Base on Play or Swap Weapons]")]
     [Tooltip("Maximum speed of the player (minus falling).")]
-    [SerializeField] private float _maximumInputSpeed;
+    [SerializeField] public float _maximumInputSpeed;
     private float _currentMaximumInputSpeed;
     [Tooltip("Scalar modifier to movement speed while sprinting.")]
     [SerializeField] private float _sprintModifier;

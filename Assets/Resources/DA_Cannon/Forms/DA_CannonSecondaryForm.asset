@@ -9,26 +9,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883895f4d365bfb419097644865cee05, type: 3}
+  m_Script: {fileID: 11500000, guid: 6247e8ba9ef11b94dad133e2efa27735, type: 3}
   m_Name: DA_CannonSecondaryForm
   m_EditorClassIdentifier: 
   id: rocketjump
-  description: applies a force on the player opposite the shot direction
+  description: Propels the player in the direction opposite of their point
   icon: {fileID: 0}
   pivot: {fileID: 0}
   firingType: 0
-  actionCooldown: 0.1
-  maxHoldDuration: 0
-  energyType: 0
-  energyRegenType: 0
-  energyRegenCooldown: 0
+  actionCooldown: 1
+  maxHoldDuration: 1
+  energyType: 1
+  energyRegenType: 2
+  energyRegenCooldown: 4
   energyRegenRate: 0
-  energyMax: 0
-  energyCost: 0
+  energyMax: 1
+  energyCost: 1
   shareEnergyWithOtherForm: 0
   autoReloadOnEmpty: 0
-  screenShakeImpulseMagnitude: 0.01
+  screenShakeImpulseMagnitude: 0
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
-  audioClip: {fileID: 0}
-  volume: 1
-  _bullet: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: dd6ebad72ed11ae4e9ee6ef771b636c2, type: 3}
+  volume: 5
+  raycastCheckLayers:
+    serializedVersion: 2
+    m_Bits: 129
+  playerForceMagnitude: 100
+  forceDuration: 0.1
+  constantDirection: 0
+  playerForceDirection: {x: 0, y: 1, z: 0}
+  statsWhileActive:
+    maximumInputSpeed: 100
+    sprintModifier: 1.5
+    ADSModifier: 0.6
+    movementAcceleration: 50
+    movementDrag: 5
+    gravity: 35
+    jumpForce: 15
