@@ -36,9 +36,8 @@ public class FormController : UnitySingleton<FormController>
     public bool isADS;
 
     [Header("Animation")]
-    // Animation
-    private Animator AnimController;
-    private bool FiredGun;
+ 
+    public bool FiredGun;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +46,6 @@ public class FormController : UnitySingleton<FormController>
         SetForm(0);
         ResetController();
 
-        // Set Animation
-        AnimController = _formParent.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -74,8 +71,6 @@ public class FormController : UnitySingleton<FormController>
         currentForm = newForm;
         WeaponPanelUIController.Instance.InitializeNewWeapon(newForm);
 
-        // Set Animation
-        AnimController = _formParent.GetComponentInChildren<Animator>();
     }
 
     public void ClearCurrentWeapon()
@@ -139,14 +134,6 @@ public class FormController : UnitySingleton<FormController>
 
         CheckPrimaryActions();
         CheckSecondaryActions();
-
-        if(FiredGun == false)
-        {
-            if (AnimController)
-            {
-                AnimController.SetBool("Fire", false);
-            }
-        }
     }
 
     void CheckPrimaryActions()
@@ -238,11 +225,7 @@ public class FormController : UnitySingleton<FormController>
 
         _currentPrimaryIsPressed = context.ReadValueAsButton();
 
-        // Animation
-        if (AnimController)
-        {
-            AnimController.SetBool("Fire",true);
-        }
+        FiredGun = true;
     }
 
     public void AltFire(InputAction.CallbackContext context)
@@ -268,11 +251,7 @@ public class FormController : UnitySingleton<FormController>
 
         _currentSecondaryIsPressed = context.ReadValueAsButton();
 
-        // Animation
-        if (AnimController)
-        {
-            AnimController.SetBool("Fire", true);
-        }
+        FiredGun = true;
     }
 
     public void AimDownSights(InputAction.CallbackContext context)
@@ -340,15 +319,6 @@ public class FormController : UnitySingleton<FormController>
         {
             StartCoroutine(ReloadRoutine(currentForm.secondaryForm.energyRegenCooldown));
         }
-
-        if (AnimController != null)
-        {
-            AnimController.SetTrigger("Reload");
-        }
-        else
-        {
-            Debug.Log("No Animation Controller Found");
-        }
     }
 
     IEnumerator ReloadRoutine(float reloadTime)
@@ -356,8 +326,6 @@ public class FormController : UnitySingleton<FormController>
         _isReloading = true;
 
         float initialReloadTime = reloadTime;
-
-        //add reload anim code here
 
         while(reloadTime > 0)
         {
