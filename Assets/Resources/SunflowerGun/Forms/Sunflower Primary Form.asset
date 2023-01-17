@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Sunflower Primary Form
   m_EditorClassIdentifier: 
   id: Sunflower Primary Form
-  description: 
+  description: Charges up a shot and immediately fires a powerful sniper shot once
+    fully charges
   icon: {fileID: 0}
   pivot: {fileID: 0}
   firingType: 2
   actionCooldown: 0
-  maxHoldDuration: 0
-  energyType: 0
-  energyRegenType: 0
+  maxHoldDuration: 0.533
+  energyType: 1
+  energyRegenType: 3
   energyRegenCooldown: 0
   energyRegenRate: 0
   energyMax: 0
@@ -31,4 +32,8 @@ MonoBehaviour:
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
   audioClip: {fileID: 0}
   volume: 1
-  barrelShroudParent: {fileID: 0}
+  projectile: {fileID: 3648734522970492190, guid: 9e99ea0e84366e344b483e0bd323be71,
+    type: 3}
+  raycastCheckLayers:
+    serializedVersion: 2
+    m_Bits: 0

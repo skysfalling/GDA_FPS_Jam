@@ -33,12 +33,12 @@ public class SunflowerPrimaryForm : BaseForm
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out info, 999f, raycastCheckLayers))
         {
             Vector3 pos = info.point;
-            bullet.GetComponent<BaseBullet>().SetTargetPosition(pos);
+            bullet.GetComponent<BaseHitscan>().SetTargetPosition(pos);
         }
         else
         {
             Vector3 dir = PlayerController.Instance._playerCamera.forward;
-            bullet.GetComponent<BaseBullet>().SetDirection(dir);
+            bullet.GetComponent<BaseHitscan>().SetTargetDirection(Camera.main.transform.forward);
         }
     }
 }
