@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 2354521773699952302}
-  damage: 1
-  speed: 25
+  damage: 5
+  speed: 40
   lifespan: 6
   hipSpread: 0.035
   ADSspread: 0.01

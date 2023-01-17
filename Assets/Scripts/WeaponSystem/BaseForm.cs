@@ -35,6 +35,9 @@ public abstract class BaseForm : ScriptableObject
     [Tooltip("Maximum amount of time this form's input button can be held for while affecting the FormAction(float holdDuration) context.")]
     public float maxHoldDuration;
 
+    [ShowIf("ShouldShowHoldDuration")]
+    public float minHoldDuration;
+
     private bool ShouldShowHoldDuration() { if (firingType != FireType.Hold) { return false; } return true; }
     private bool HasLimitedAmmo() { if (energyType != EnergyUsage.Unlimited) { return true; } return false; }
 
@@ -79,6 +82,10 @@ public abstract class BaseForm : ScriptableObject
     [Tooltip("Toggles whether this form should trigger a manual reload on empty.")]
     public bool autoReloadOnEmpty;
 
+    [ShowIf("ShouldShowHoldDuration")]
+    public bool autoFireOnMaxHold;
+
+
     [Header("Screen Shake Impulse")]
     [Tooltip("Amount of shake. Leave at 0 for no shake.")]
     public float screenShakeImpulseMagnitude;
@@ -120,7 +127,6 @@ public abstract class BaseForm : ScriptableObject
     {
         return FormController.Instance.currentForm;
     }
-
 
 
 }
