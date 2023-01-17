@@ -6,17 +6,31 @@ using UnityEngine.InputSystem;
 public class ChargeShotBehavior : MonoBehaviour
 {
     public FormObject formObject;
-    public float chargeTime = 0.533f;
-    public bool useAltFire = false;
+    public bool useSecondaryFireInstead = false;
+
+    private float chargeTime = 0.533f;
 
 
-    private float chargeDuration;
+    private void Start()
+    {
+        if (!useSecondaryFireInstead)
+        {
+            chargeTime = formObject.primaryForm.maxHoldDuration;
+        }
+        else
+        {
+            if (formObject.secondaryForm)
+            {
+                chargeTime = formObject.secondaryForm.maxHoldDuration;
+            }
+        }
+    }
 
 
     private void Update()
     {
-        // If fully charges, automatically shoot
-        if (!useAltFire)
+        // If fully charged, automatically shoot
+        if (!useSecondaryFireInstead)
         {
             if (FormController.Instance._currentPrimaryIsPressed)
             {
