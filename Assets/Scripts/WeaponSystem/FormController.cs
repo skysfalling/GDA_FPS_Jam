@@ -160,6 +160,7 @@ public class FormController : UnitySingleton<FormController>
             {
                 _currentPrimaryHoldDuration += Time.deltaTime;
                 Mathf.Clamp(_currentPrimaryHoldDuration, 0, currentForm.primaryForm.maxHoldDuration);
+                CheckPrimaryAutoHold();
             }
 
 
@@ -190,15 +191,30 @@ public class FormController : UnitySingleton<FormController>
             {
                 _currentSecondaryHoldDuration += Time.deltaTime;
                 Mathf.Clamp(_currentSecondaryHoldDuration, 0, currentForm.secondaryForm.maxHoldDuration);
+                CheckSecondaryAutoHold();
+                
             }
 
 
         }
     }
 
-    private void LateUpdate()
+    void CheckPrimaryAutoHold()
     {
+        if (currentForm.primaryForm.autoFireOnMaxHold && _currentPrimaryHoldDuration >= currentForm.primaryForm.maxHoldDuration)
+        {
+            FiredGun = currentForm.UsePrimaryAction(_currentPrimaryHoldDuration);
+            _currentPrimaryHoldDuration = 0;
+        }
+    }
 
+    void CheckSecondaryAutoHold()
+    {
+        if (currentForm.secondaryForm.autoFireOnMaxHold && _currentSecondaryHoldDuration >= currentForm.secondaryForm.maxHoldDuration)
+        {
+            FiredGun = currentForm.UseSecondaryAction(_currentSecondaryHoldDuration);
+            _currentSecondaryHoldDuration = 0;
+        }
     }
 
     public void Fire(InputAction.CallbackContext context)
@@ -216,12 +232,15 @@ public class FormController : UnitySingleton<FormController>
 
         if (context.canceled)
         {
-            if (currentForm.primaryForm.firingType == BaseForm.FireType.Hold && currentForm._currentPrimaryCooldown <= 0)
+            if (currentForm.primaryForm.firingType == BaseForm.FireType.Hold &&
+                _currentPrimaryHoldDuration >= currentForm.primaryForm.minHoldDuration)
             {
                 FiredGun = currentForm.UsePrimaryAction(_currentPrimaryHoldDuration);
                 _currentPrimaryHoldDuration = 0;
             }
         }
+
+
 
         _currentPrimaryIsPressed = context.ReadValueAsButton();
 
@@ -242,7 +261,8 @@ public class FormController : UnitySingleton<FormController>
         }
         if (context.canceled)
         {
-            if (currentForm.secondaryForm.firingType == BaseForm.FireType.Hold && currentForm._currentSecondaryCooldown <= 0)
+            if (currentForm.secondaryForm.firingType == BaseForm.FireType.Hold &&
+                _currentSecondaryHoldDuration >= currentForm.secondaryForm.minHoldDuration)
             {
                 FiredGun = currentForm.UseSecondaryAction(_currentSecondaryHoldDuration);
                 _currentSecondaryHoldDuration = 0;
