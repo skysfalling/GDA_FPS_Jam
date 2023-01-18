@@ -18,7 +18,7 @@ public class SunflowerPrimaryForm : BaseForm
             return;
         }
 
-        Debug.Log("shot");
+
         base.FormAction(context);
 
         //Spawn bullet prefab at weapon's barrel position
