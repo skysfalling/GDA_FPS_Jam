@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3758195327176043811}
   - component: {fileID: 2754127977494684540}
   m_Layer: 9
-  m_Name: HitscanBullet
+  m_Name: Sunflower Primary Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf66db4b8c65bb478fe57371af8cd1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0.1
-  lifespan: 0.075
-  hipSpread: 0.05
-  ADSspread: 0.01
+  damage: 14
+  lifespan: 0.5
+  hipSpread: 0.06
+  ADSspread: 0
   targetPosition: {x: 0, y: 0, z: 0}
   hasRaycastHit: 0
   lineRenderer: {fileID: 2754127977494684540}
