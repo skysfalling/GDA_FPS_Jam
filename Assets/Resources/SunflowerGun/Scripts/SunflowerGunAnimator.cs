@@ -8,6 +8,9 @@ public class SunflowerGunAnimator : MonoBehaviour
     //       Be sure to go into weapon_info.json and update the model path
     //       to point to the one you're gonna add
     //
+    //       Just a heads up I made it so that both primary and alt fire
+    //       will trigger the shooting behavior, so do keep that in mind
+    //
     //       Also be sure to set up a transform at the end of the barrel
     //       for the bullet spawn
 
@@ -17,9 +20,11 @@ public class SunflowerGunAnimator : MonoBehaviour
     [Space(15)]
     public ParticleSystem steamBarrel;
     public ParticleSystem steamReloadEjection;
+    public ParticleSystem muzzleFlash;
 
 
     [Header("Audio References")]
+    public AudioClip FireChargingUp;
     public AudioClip FireMainSound;
     public AudioClip FireSteam;
 
@@ -41,7 +46,7 @@ public class SunflowerGunAnimator : MonoBehaviour
         AudioManager.Instance.PlaySoundEffect(toPlay, volume);
     }
 
-    public void PlaySteamEmitter(ParticleSystem toPlay)
+    public void PlayParticleEmitter(ParticleSystem toPlay)
     {
         toPlay.Play();
     }
