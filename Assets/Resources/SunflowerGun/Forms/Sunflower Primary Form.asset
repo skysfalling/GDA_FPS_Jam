@@ -19,7 +19,7 @@ MonoBehaviour:
   pivot: {fileID: 0}
   firingType: 2
   actionCooldown: 0.1
-  maxHoldDuration: 0.533
+  maxHoldDuration: 1
   minHoldDuration: 0
   energyType: 1
   energyRegenType: 3
@@ -32,7 +32,7 @@ MonoBehaviour:
   autoFireOnMaxHold: 1
   screenShakeImpulseMagnitude: 0
   screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
-  audioClip: {fileID: 8300000, guid: 574526b66f7bc37409363ca9fbfa1269, type: 3}
+  audioClip: {fileID: 8300000, guid: 46f53d9f3aad54a4a82594451426ce6c, type: 3}
   volume: 1
   projectile: {fileID: 3648734522970492190, guid: 9e99ea0e84366e344b483e0bd323be71,
     type: 3}
