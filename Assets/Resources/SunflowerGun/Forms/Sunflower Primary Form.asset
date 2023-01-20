@@ -27,7 +27,7 @@ MonoBehaviour:
   energyRegenRate: 0
   energyMax: 1
   energyCost: 1
-  shareEnergyWithOtherForm: 0
+  shareEnergyWithOtherForm: 1
   autoReloadOnEmpty: 1
   autoFireOnMaxHold: 1
   screenShakeImpulseMagnitude: 0
