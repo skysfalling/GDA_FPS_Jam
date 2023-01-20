@@ -23,24 +23,6 @@ public class SunflowerGunAnimator : MonoBehaviour
     public ParticleSystem muzzleFlash;
 
 
-    [Header("Audio References")]
-    public AudioClip FireChargingUp;
-    public AudioClip FireMainSound;
-    public AudioClip FireSteam;
-
-    public AudioClip ReloadOpen;
-    public AudioClip ReloadOpenEjectMag;
-    public AudioClip ReloadOpenCaseHitGround;
-
-    public AudioClip ReloadInsertMag;
-    public AudioClip ReloadInsertProjectile;
-
-    public AudioClip ReloadLockMechanism;
-
-    public AudioClip ReloadBoltFirst;
-    public AudioClip ReloadBoltSecond;
-
-
     public void PlayAudio(AudioClip toPlay, float volume = 1f)
     {
         AudioManager.Instance.PlaySoundEffect(toPlay, volume);
