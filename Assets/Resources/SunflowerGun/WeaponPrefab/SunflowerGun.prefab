@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce73ca4a5d5be24283905d29c1befac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  formObject: {fileID: 8772137086625311784}
   chargingUpSoundSource: {fileID: 5948781852136304982}
 --- !u!114 &1606309026249923286
 MonoBehaviour:

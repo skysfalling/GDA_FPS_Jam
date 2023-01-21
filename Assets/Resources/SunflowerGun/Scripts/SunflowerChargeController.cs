@@ -9,16 +9,20 @@ public class SunflowerChargeController : MonoBehaviour
     // -Enrico
 
     public FormObject formObject;
+    public Animator animator;
     public AudioSource chargingUpSoundSource;
 
 
     private void Update()
     {
-        if (FormController.Instance._currentPrimaryIsPressed)
+        if (!FormController.Instance._isReloading &&
+            FormController.Instance._currentPrimaryIsPressed &&
+            formObject._currentPrimaryCooldown <= 0)
         {
             if (!chargingUpSoundSource.isPlaying)
             {
                 chargingUpSoundSource.Play();
+                // Probably play Charge animation here
             }
 
             // Formula for getting % of charge done
@@ -29,6 +33,7 @@ public class SunflowerChargeController : MonoBehaviour
             if (chargingUpSoundSource.isPlaying)
             {
                 chargingUpSoundSource.Stop();
+                // And go back to Idle animation here
             }
         }
     }

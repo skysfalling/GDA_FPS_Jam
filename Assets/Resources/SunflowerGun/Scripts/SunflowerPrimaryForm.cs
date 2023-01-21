@@ -12,13 +12,6 @@ public class SunflowerPrimaryForm : BaseForm
 
     public override void FormAction(float context)
     {
-        // If charge time wasn't long enough, do nothing
-        if (FormController.Instance._currentPrimaryHoldDuration < maxHoldDuration)
-        {
-            return;
-        }
-
-
         base.FormAction(context);
 
         //Spawn bullet prefab at weapon's barrel position
