@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb4ed66f7758af4088ef1d9dc62977a, type: 3}
+  m_Name: PaintGunPrimary
+  m_EditorClassIdentifier: 
+  id: paint_gun_primary
+  description: Shoots paint. Hold to shoot
+  icon: {fileID: 0}
+  pivot: {fileID: 0}
+  firingType: 0
+  actionCooldown: 0.1
+  maxHoldDuration: 0
+  energyType: 0
+  energyRegenType: 0
+  energyRegenCooldown: 0
+  energyRegenRate: 0
+  energyMax: 10
+  energyCost: 1
+  shareEnergyWithOtherForm: 0
+  autoReloadOnEmpty: 0
+  screenShakeImpulseMagnitude: 0.01
+  screenShakeImpulseDirection: {x: 0, y: 0, z: 0}
+  audioClip: {fileID: 0}
+  volume: 1
+  _bullet: {fileID: 3500055522399154962, guid: e3811edcc4d4ac042a596de41e239bc9, type: 3}
+  raycastCheckLayers:
+    serializedVersion: 2
+    m_Bits: 129

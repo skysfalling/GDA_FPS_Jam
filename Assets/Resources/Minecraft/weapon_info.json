@@ -1,0 +1,6 @@
+{
+  "id": "minegun",
+  "weaponPrefabPath": "Minecraft/WeaponPrefab/MineGun",
+  "meshPath": "Minecraft/Models/display_minecraft_arm",
+  "displayName": "MineGun"
+}

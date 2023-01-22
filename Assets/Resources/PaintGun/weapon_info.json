@@ -1,0 +1,6 @@
+{
+  "id": "paint_gun",
+  "weaponPrefabPath": "PaintGun/WeaponPrefab/PaintGun",
+  "meshPath": "PaintGun/Models/fpsgun",
+  "displayName": "Paint Gun"
+}
