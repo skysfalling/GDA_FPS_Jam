@@ -188,10 +188,8 @@ MonoBehaviour:
   hand_model: {fileID: 7428159820693048950}
   background_music: {fileID: -848359483530811751}
   music:
-  - {fileID: 8300000, guid: e2b52d8b513831c4bb29ee70b6f4a701, type: 3}
   - {fileID: 8300000, guid: 6471f7dbe62b3e04ab57d30d979a1228, type: 3}
-  - {fileID: 8300000, guid: c1a9ff2535729a94abd1ca53da9aba93, type: 3}
-  - {fileID: 8300000, guid: fc0e2471b2ba7ee469e84ea91643a78f, type: 3}
+  isWalking: 0
   walking_audio: {fileID: 8451525820318957138}
 --- !u!82 &-848359483530811751
 AudioSource:
