@@ -1,0 +1,6 @@
+{
+  "id": "homingSkull",
+  "weaponPrefabPath": "HomingSkull/WeaponPrefab/HomingFishGun",
+  "meshPath": "HomingSkull/Models/testModel",
+  "displayName": "Homing Skull"
+}
